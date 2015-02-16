@@ -1,1 +1,8 @@
+timezone: Europe/Moscow
+
+# Handling reading
+encoding: utf-8
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+
+# Conversion
 highlighter: pygments
