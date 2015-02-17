@@ -1,3 +1,3 @@
 # iamantony.github.io
 My blog.  
-Based on http://www.uberobert.com/ (source: https://github.com/rbirnie/uberobert.com)
+Based on http://www.uberobert.com/ (sources: https://github.com/rbirnie/uberobert.com)
