@@ -1,8 +1,17 @@
-timezone: Europe/Moscow
+# Jekyll
+exclude: ['nbproject', 'README.md', 'manifest.yml', 'rakefile.rb', 'Gemfile', 'Gemfile.lock', 'update.sh', 'localupdate.sh']
+permalink:   /:title
 
-# Handling reading
-encoding: utf-8
-markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+safe:        false
 
-# Conversion
-highlighter: pygments
+future:      false
+pygments:    true
+markdown:    rdiscount
+
+# Site
+iamantony:
+    title: iamantony
+
+# Only First P Plugin
+only_first_p:
+    show_read_more_link: false
