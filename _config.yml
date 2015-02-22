@@ -2,16 +2,9 @@
 exclude: ['nbproject', 'README.md', 'manifest.yml', 'rakefile.rb', 'Gemfile', 'Gemfile.lock', 'update.sh', 'localupdate.sh']
 permalink:   /:title
 
-safe:        false
-
-future:      false
-pygments:    true
-markdown:    rdiscount
+future: false
+markdown: rdiscount
 
 # Site
 iamantony:
     title: iamantony
-
-# Only First P Plugin
-only_first_p:
-    show_read_more_link: false
