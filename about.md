@@ -70,6 +70,6 @@ Feel free to contact me via email, twitter or something else :-)
 </p>
 
 <p>
-P.S.: I'm not good at English so if you see any mistakes I would be very 
-grateful if you help me to correct them!
+P.S.: I'm not good at English so if you will see any mistakes it would be 
+great if you would help me to correct them!
 </p>
