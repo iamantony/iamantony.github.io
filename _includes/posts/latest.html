@@ -9,8 +9,8 @@
         {% capture reverse_index %}{{forloop.length | minus:forloop.index | plus:1 }}{% endcapture %}
         <li value="{{ reverse_index }}">
             <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-            <p class="latest-post-info">
-                {{ post.date | date: "%B %e, %Y" }}{% if content_item.author %} by {{ post.author.name }}{% endif %}
+            <p class="post-info">
+                {{ post.date | date: "%B %e, %Y" }}{% if post.author %} by {{ post.author.name }}{% endif %}
             </p>
             {{ post.excerpt }}
         </li>
