@@ -404,3 +404,30 @@ div.post h3 {
 .inline-illustration-floated {
     float:left;
 }
+
+#page-latest ol {
+    margin-left:120px;
+}
+
+#page-latest ol li {
+    font-size:40px;
+    color:#ddd;
+    margin-bottom:40px;
+}
+
+#page-latest ol li:hover {
+    color:#ccc;
+}
+
+#page-latest ol li h2 a {
+    display:block;
+}
+
+#page-latest ol li p {
+    font-size:16px;
+    color:#555;
+}
+
+.latest-post-info {
+    opacity: 0.4;
+}
