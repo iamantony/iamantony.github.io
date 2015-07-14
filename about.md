@@ -51,11 +51,6 @@ interested in image processing.
 </p>
 
 <p>
-Nowadays I work as C++ developer at 
-<a target="_blank" href="http://www.compulink.ru/">Compulink</a>.
-</p>
-
-<p>
 I still can't say that I became a professional programmer. Every day I try 
 to learn something new: C++ in depth, SQL, TDD, program architecture, system 
 administration... It's not always easy, but always fun.
