@@ -6,28 +6,106 @@ author:
   url: {{ site.url }}
 ---
 
-About a year ago I worked on my home-project that was related to image compression.
-I used my favorite framework - Qt - and things were going well.
+About a year ago I worked on my home-project that was related to image
+compression. I used my favorite framework - Qt - and things were going
+well.
 
-Until I didn't have to plot some statistics data. If I were used Python, I would
-just import [matplotlib][1] library, add several lines of code and - whoop -
-get neat diagrams! But I used C++ and Qt. And I didn't want to make this task too
-complicated. So I decided that the simpliest way for me was to export my data to
-[csv-file][2], open it with Microsoft Excel or LibreOffice Calc and create plots.
-Ok, let's do it!
+Until I didn't have to plot some statistics data. If I were used Python,
+I would just import [matplotlib][1] library, add several lines of code
+and - whoop - get neat diagrams! But I used C++ and Qt. And I didn't want
+to make this task too complicated. So I decided that the simpliest way
+for me was to export my data to [csv-file][2], open it with Microsoft
+Excel or LibreOffice Calc and create plots. Ok, let's do it!
 
-CSV-file have simple structure. It is a text file, each line of it is a single row.
-Elements in the each row are separated with separator symbol (comma or tab or any
-other separator). Example:
+CSV-file have simple structure. It is a text file, each line of it is
+a single row. Elements in the each row are separated with separator
+symbol (comma or tab or any other separator). Example:
 
 ``` text
 id,red,green,blue
 0,11,255,0
 1,167,209,89
-...
+2,34,55,12
 ```
 
-Here we have four columns: id, red, green and blue.
+Here on the first line we have names of four columns: id, red, green and
+blue. On the next lines there are values of pixels. These data can be
+presented in a table:
+
+| id | red | green | blue |
+| -- | --- | ----- | ---- |
+|  0 |  11 |   255 |    0 |
+|  1 | 167 |   209 |   89 |
+|  2 |  34 |    55 |   12 |
+
+To create such csv-file we would need to write code like this:
+
+``` cpp
+#include <QString>
+#include <QStringList>
+#include <QFile>
+#include <QTextStream>
+
+int main()
+{
+    // Prepair data
+    QStringList headers, firstPixel, secondPixel, thirdPixel;
+    headers << "id" << "red" << "green" << "blue";
+    firstPixel << "0" << "11" << "255" << "0";
+    secondPixel << "1" << "167" << "209" << "89";
+    thirdPixel << "2" << "34" << "55" << "12";
+
+    // Open csv-file
+    QFile file("myfile.csv");
+    file.open(QIODevice::Append | QIODevice::Text);
+
+    // Write data to file
+    QTextStream stream(&file);
+    QString separator(",");
+    stream << headers.join(separator) << endl;
+    stream << firstPixel.join(separator) << endl;
+    stream << secondPixel.join(separator) << endl;
+    stream << thirdPixel.join(separator) << endl;
+    
+    stream.flush();
+    file.close();
+    
+    return 0;
+}
+```
+
+Code, that read csv-files, looks like this:
+
+``` cpp
+#include <QString>
+#include <QList>
+#include <QStringList>
+#include <QFile>
+#include <QTextStream>
+
+int main()
+{
+    // Open csv-file
+    QFile file("myfile.csv");
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+
+    // Read data from file
+    QTextStream stream(&file);
+    QList<QStringList> data;
+    QString separator(",");
+    while (stream.atEnd() == false)
+    {
+        QString line = stream.readLine();
+        data << line.split(separator);
+    }
+
+    file.close();
+    
+    return 0;
+}
+```
+Straight, simple code. I hope you get the idea. Of course, it could
+be optimised, but now it is not our goal.
 
 [1]: http://matplotlib.org/
 [2]: http://en.wikipedia.org/wiki/Comma-separated_values
