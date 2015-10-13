@@ -9,14 +9,25 @@ author:
 About a year ago I worked on my home-project that was related to image compression.
 I used my favorite framework - Qt - and things were going well.
 
-Until one day I didn't need to plot some statistcs data. If I were used Python, I would
-just import [matplotlib][1] library, add several lines of code and - whoop - 
-get neat diagrams! But I used C++ and Qt. And I didn't want to make this task too complicated. 
-So I decided that the simpliest way for me was to export my data to [csv-file][2], 
-open it with Microsoft Excel or LibreOffice Calc and create plots. Ok, let's do it!
+Until I didn't have to plot some statistics data. If I were used Python, I would
+just import [matplotlib][1] library, add several lines of code and - whoop -
+get neat diagrams! But I used C++ and Qt. And I didn't want to make this task too
+complicated. So I decided that the simpliest way for me was to export my data to
+[csv-file][2], open it with Microsoft Excel or LibreOffice Calc and create plots.
+Ok, let's do it!
 
-CSV-file have simple structure. It is a text file, each line of it is a single row. Elements
-in the each row are separated with separator (comma or tab or any other separator).
+CSV-file have simple structure. It is a text file, each line of it is a single row.
+Elements in the each row are separated with separator symbol (comma or tab or any
+other separator). Example:
+
+``` text
+id,red,green,blue
+0,11,255,0
+1,167,209,89
+...
+```
+
+Here we have four columns: id, red, green and blue.
 
 [1]: http://matplotlib.org/
 [2]: http://en.wikipedia.org/wiki/Comma-separated_values
