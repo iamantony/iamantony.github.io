@@ -1,0 +1,10 @@
+---
+title: qtcsv library: working with csv-files
+layout: default
+author:
+  name: Antony Cherepanov
+  url: {{ site.url }}
+---
+
+About a year ago I worked on my home-project that was related to image compression.
+I used my favorite framework - Qt - and things were going well.
