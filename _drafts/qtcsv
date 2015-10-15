@@ -13,77 +13,122 @@ well.
 Until I didn't have to plot some statistics data. If I were used Python,
 I would just import [matplotlib][1] library, add several lines of code
 and - whoop - get neat diagrams! But I used C++ and Qt. And I didn't want
-to make this task too complicated. So I decided that the simpliest way
+to make this task too complicated. So I decided that the simplest way
 for me was to export my data to [csv-file][2], open it with Microsoft
 Excel or LibreOffice Calc and create plots. Ok, let's do it!
 
-CSV-file have simple structure. It is a text file, each line of it is
-a single row. Elements in the each row are separated with separator
-symbol (comma or tab or any other separator). Example:
+First of all, let's see what is a csv-file. csv-file is a text file with
+quite a simple structure. Each line in such file interpreted as a single
+row of a table. Elements (or cell values) in the each row are separated
+with separator symbol (comma or tab or any other separator).
+
+Next, let's define our task. For example, we have a list of [pixel][3]
+objects and we want to create a [histograms][4] for each component of
+those pixels. Each pixel have three channels: red, green and blue. So
+this data could be represented as this table:
+
+| red | green | blue |
+| --- | ----- | ---- |
+|  11 |   255 |    0 |
+| 167 |   209 |   89 |
+|  34 |    55 |   12 |
+| ... | ..... | .... |
+
+If we will export this data to csv-file, it will looks like this:
 
 ``` text
-id,red,green,blue
-0,11,255,0
-1,167,209,89
-2,34,55,12
+red,green,blue
+11,255,0
+167,209,89
+34,55,12
+...
 ```
 
-Here on the first line we have names of four columns: id, red, green and
-blue. On the next lines there are values of pixels. These data can be
-presented in a table:
+Here we use comma as elements separator.
 
-| id | red | green | blue |
-| -- | --- | ----- | ---- |
-|  0 |  11 |   255 |    0 |
-|  1 | 167 |   209 |   89 |
-|  2 |  34 |    55 |   12 |
+To write such csv-file, create new Qt project. Copy to .pro file:
 
-To create such csv-file we would need to write code like this:
+``` qmake
+QT       += core gui
+
+# set name of you project
+TARGET = ProjectName
+CONFIG   += console
+CONFIG   -= app_bundle
+TEMPLATE = app
+SOURCES += main.cpp
+```
+
+Copy to main.cpp file:
 
 ``` cpp
+#include <QApplication>
+#include <QList>
+#include <QColor>
 #include <QString>
 #include <QStringList>
 #include <QFile>
 #include <QTextStream>
 
-int main()
+QList<QRgb> GetPixels()
 {
-    // Prepair data
-    QStringList headers, firstPixel, secondPixel, thirdPixel;
-    headers << "id" << "red" << "green" << "blue";
-    firstPixel << "0" << "11" << "255" << "0";
-    secondPixel << "1" << "167" << "209" << "89";
-    thirdPixel << "2" << "34" << "55" << "12";
+    QList<QRgb> pixels;
+    pixels << qRgb(11, 255, 0) << qRgb(167, 209, 89) << qRgb(34, 55, 12);
 
+    return pixels;
+}
+
+QStringList PixelToStrings(const QRgb& pixel)
+{
+    QStringList values;
+    values << QString::number(qRed(pixel)) <<
+              QString::number(qGreen(pixel)) <<
+              QString::number(qBlue(pixel));
+
+    return values;
+
+}
+
+void WriteToCSV(const QList<QRgb>& pixels)
+{
     // Open csv-file
-    QFile file("myfile.csv");
+    QFile file("pixels.csv");
     file.open(QIODevice::Append | QIODevice::Text);
 
     // Write data to file
     QTextStream stream(&file);
     QString separator(",");
-    stream << headers.join(separator) << endl;
-    stream << firstPixel.join(separator) << endl;
-    stream << secondPixel.join(separator) << endl;
-    stream << thirdPixel.join(separator) << endl;
-    
+    for (int i = 0; i < pixels.size(); ++i)
+    {
+        QStringList pixelStr = PixelToStrings(pixels.at(i));
+        stream << pixelStr.join(separator) << endl;
+    }
+
     stream.flush();
     file.close();
-    
-    return 0;
+}
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+
+    QList<QRgb> pixels = GetPixels();
+    WriteToCSV(pixels);
+
+    return a.exec();
 }
 ```
 
-Code, that read csv-files, looks like this:
+Code, that create and write csv-file is located in function WriteToCSV().
+It's very short, as you see. If you compile this project and run it,
+in project folder (or in build folder) will be created *pixels.csv* file.
+You can open it with your favourite text editor, you will see the desired
+numbers.
+
+Reading of the csv-file is also not a difficult task. Here is the code:
 
 ``` cpp
-#include <QString>
-#include <QList>
-#include <QStringList>
-#include <QFile>
-#include <QTextStream>
-
-int main()
+QList<QStringList> ReadCSVFile()
 {
     // Open csv-file
     QFile file("myfile.csv");
@@ -100,12 +145,12 @@ int main()
     }
 
     file.close();
-    
-    return 0;
+    return data;
 }
 ```
-Straight, simple code. I hope you get the idea. Of course, it could
-be optimised, but now it is not our goal.
+
 
 [1]: http://matplotlib.org/
 [2]: http://en.wikipedia.org/wiki/Comma-separated_values
+[3]: https://en.wikipedia.org/wiki/Pixel
+[4]: https://en.wikipedia.org/wiki/Histogram
