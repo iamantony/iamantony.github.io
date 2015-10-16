@@ -50,30 +50,20 @@ red,green,blue
 ```
 
 Good. Next question - how to create such file programmatically? No
-problem, here is the answer. Create new Qt project and copy this text
-to .pro file:
+problem, here is the answer. Download this example project:
 
-``` qmake
-QT       += core gui
+https://github.com/iamantony/csv-read-write-example
 
-# set name of you project
-TARGET = ProjectName
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
-SOURCES += main.cpp
-```
-
-Copy this code to main.cpp file:
+Here is the code from main.cpp file:
 
 ``` cpp
-#include <QApplication>
 #include <QList>
 #include <QColor>
 #include <QString>
 #include <QStringList>
 #include <QFile>
 #include <QTextStream>
+#include <QDebug>
 
 QList<QRgb> GetPixels()
 {
@@ -92,7 +82,7 @@ QList<QStringList> PixelsToStrings(const QList<QRgb>& pixels)
         values << QString::number(qRed(pixels.at(i))) <<
                   QString::number(qGreen(pixels.at(i))) <<
                   QString::number(qBlue(pixels.at(i)));
-        
+
         strings << values;
     }
 
@@ -118,34 +108,10 @@ void WriteToCSV(const QList<QStringList>& pixels)
     file.close();
 }
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-
-    QList<QRgb> pixels = GetPixels();
-    QList<QStringList> pixelsStr = PixelsToStrings(pixels);
-    WriteToCSV(pixelsStr);
-
-    return a.exec();
-}
-```
-
-Code, that create and write csv-file is located in function WriteToCSV().
-It's very short, as you see. If you compile this project and run it,
-in project folder (or in build folder) will be created file with name
-*pixels.csv*. You can open it with your favourite text editor, you will
-see the desired numbers.
-
-Congratilations! Our task is complete and I can end my post... oh yes,
-I forgot that I promised you to tell about reading csv-files. Ok, I'll
-tell. Reading of the csv-file isn't a difficult task (also).
-Here is the code:
-
-``` cpp
-QList<QStringList> ReadCSVFile()
+QList<QStringList> ReadCSV()
 {
     // Open csv-file
-    QFile file("myfile.csv");
+    QFile file("pixels.csv");
     file.open(QIODevice::ReadOnly | QIODevice::Text);
 
     // Read data from file
@@ -161,15 +127,52 @@ QList<QStringList> ReadCSVFile()
     file.close();
     return data;
 }
+
+void Print(const QList<QStringList>& data)
+{
+    for (int i = 0; i < data.size(); ++i)
+    {
+        qDebug() << data.at(i).join(", ");
+    }
+}
+
+int main()
+{
+    QList<QRgb> pixels = GetPixels();
+    QList<QStringList> pixelsStr = PixelsToStrings(pixels);
+    WriteToCSV(pixelsStr);
+
+    QList<QStringList> readData = ReadCSV();
+    Print(readData);
+
+    return 0;
+}
 ```
 
-You can use csv-files as a method to export data from your program
-and as a method to import data to your program.
+Code, that create and write csv-file is located in function WriteToCSV().
+It's very short, as you see. If you compile this project and run it,
+in project folder (or in build folder) will be created file with name
+*pixels.csv*. You can open it with your favourite text editor, you will
+see the desired numbers.
+
+Reading of the csv-file isn't a difficult task (also). In function
+ReadCSV() we open csv-file, read it line by line and split these
+lines by separator symbol. As the output we get list of lists of
+strings - elements of the table.
+
+You can use csv-files as a method to *export* data from your program
+and as a method to *import* data into your program. Very useful!
 
 Code that I posted here for reading and writing csv-files is Ok.
 But it have some drawbacks.
 
-1. Read/write functions are not flexible. I mean, 
+1. Use only one type of data - strings. I mean, functions use list of
+strings as output/input objects, so before using these functions
+you must transform your data (integers, floats, other complex
+objects) to strings by yourself.
+
+2. High memory consumption.
+3. Parameters of file is hardcoded.
 
 [1]: http://matplotlib.org/
 [2]: http://en.wikipedia.org/wiki/Comma-separated_values
