@@ -1,5 +1,5 @@
 ---
-title: qtcsv library: working with csv-files
+title: qtcsv: working with csv-files in Qt
 layout: default
 author:
   name: Antony Cherepanov
@@ -15,17 +15,17 @@ I would just import [matplotlib][1] library, add several lines of code
 and - whoop - get neat diagrams! But I used C++ and Qt. And I didn't want
 to make this task too complicated. So I decided that the simplest way
 for me was to export my data to [csv-file][2], open it with Microsoft
-Excel or LibreOffice Calc and create plots. Ok, let's do it!
+Excel or LibreOffice Calc and create plots.
 
-First of all, let's see what is a csv-file. csv-file is a text file with
-quite a simple structure. Each line in such file interpreted as a single
-row of a table. Elements (or cell values) in the each row are separated
-with separator symbol (comma or tab or any other separator).
+I don't intend to describe here the last part of this task - creation of
+plots in the office suite. There are bunch of good articles and videos
+on this topic [in the Internet][3]. Intead I want to concentrate on the
+csv-stuff: how to read and write csv files using Qt.
 
-Next, let's define our task. For example, we have a list of [pixel][3]
-objects and we want to create a [histograms][4] for each component of
-those pixels. Each pixel have three channels: red, green and blue. So
-this data could be represented as this table:
+Ok, let's define our task in more detail. For example, we have a list of
+[pixel][4] objects and we want to create a [histograms][5] for each
+component of those pixels. Each pixel have three channels: red, green and
+blue. So this data could be represented as this table:
 
 | red | green | blue |
 | --- | ----- | ---- |
@@ -34,7 +34,12 @@ this data could be represented as this table:
 |  34 |    55 |   12 |
 | ... | ..... | .... |
 
-If we will export this data to csv-file, it will looks like this:
+How we can export this table to csv-file? First of all, let's see what is
+a csv-file. csv-file is a text file with quite a simple structure. Each
+line in such file interpreted as a single row of a table. Elements (or
+cell values) in the each row are separated with separator symbol (comma
+or tab or any other separator). So our table in csv-file will looks like
+this (with comma as separator symbol):
 
 ``` text
 red,green,blue
@@ -44,9 +49,9 @@ red,green,blue
 ...
 ```
 
-Here we use comma as elements separator.
-
-To write such csv-file, create new Qt project. Copy to .pro file:
+Good. Next question - how to create such file programmatically? No
+problem, here is the answer. Create new Qt project and copy this text
+to .pro file:
 
 ``` qmake
 QT       += core gui
@@ -59,7 +64,7 @@ TEMPLATE = app
 SOURCES += main.cpp
 ```
 
-Copy to main.cpp file:
+Copy this code to main.cpp file:
 
 ``` cpp
 #include <QApplication>
@@ -78,18 +83,24 @@ QList<QRgb> GetPixels()
     return pixels;
 }
 
-QStringList PixelToStrings(const QRgb& pixel)
+QList<QStringList> PixelsToStrings(const QList<QRgb>& pixels)
 {
-    QStringList values;
-    values << QString::number(qRed(pixel)) <<
-              QString::number(qGreen(pixel)) <<
-              QString::number(qBlue(pixel));
+    QList<QStringList> strings;
+    for (int i = 0; i < pixels.size(); ++i)
+    {
+        QStringList values;
+        values << QString::number(qRed(pixels.at(i))) <<
+                  QString::number(qGreen(pixels.at(i))) <<
+                  QString::number(qBlue(pixels.at(i)));
+        
+        strings << values;
+    }
 
-    return values;
+    return strings;
 
 }
 
-void WriteToCSV(const QList<QRgb>& pixels)
+void WriteToCSV(const QList<QStringList>& pixels)
 {
     // Open csv-file
     QFile file("pixels.csv");
@@ -100,8 +111,7 @@ void WriteToCSV(const QList<QRgb>& pixels)
     QString separator(",");
     for (int i = 0; i < pixels.size(); ++i)
     {
-        QStringList pixelStr = PixelToStrings(pixels.at(i));
-        stream << pixelStr.join(separator) << endl;
+        stream << pixels.at(i).join(separator) << endl;
     }
 
     stream.flush();
@@ -113,7 +123,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     QList<QRgb> pixels = GetPixels();
-    WriteToCSV(pixels);
+    QList<QStringList> pixelsStr = PixelsToStrings(pixels);
+    WriteToCSV(pixelsStr);
 
     return a.exec();
 }
@@ -121,11 +132,14 @@ int main(int argc, char *argv[])
 
 Code, that create and write csv-file is located in function WriteToCSV().
 It's very short, as you see. If you compile this project and run it,
-in project folder (or in build folder) will be created *pixels.csv* file.
-You can open it with your favourite text editor, you will see the desired
-numbers.
+in project folder (or in build folder) will be created file with name
+*pixels.csv*. You can open it with your favourite text editor, you will
+see the desired numbers.
 
-Reading of the csv-file is also not a difficult task. Here is the code:
+Congratilations! Our task is complete and I can end my post... oh yes,
+I forgot that I promised you to tell about reading csv-files. Ok, I'll
+tell. Reading of the csv-file isn't a difficult task (also).
+Here is the code:
 
 ``` cpp
 QList<QStringList> ReadCSVFile()
@@ -149,8 +163,16 @@ QList<QStringList> ReadCSVFile()
 }
 ```
 
+You can use csv-files as a method to export data from your program
+and as a method to import data to your program.
+
+Code that I posted here for reading and writing csv-files is Ok.
+But it have some drawbacks.
+
+1. Read/write functions are not flexible. I mean, 
 
 [1]: http://matplotlib.org/
 [2]: http://en.wikipedia.org/wiki/Comma-separated_values
-[3]: https://en.wikipedia.org/wiki/Pixel
-[4]: https://en.wikipedia.org/wiki/Histogram
+[3]: http://lmgtfy.com/?q=how+to+create+plots+in+excel
+[4]: https://en.wikipedia.org/wiki/Pixel
+[5]: https://en.wikipedia.org/wiki/Histogram
