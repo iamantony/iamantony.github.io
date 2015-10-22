@@ -19,7 +19,7 @@ Excel or LibreOffice Calc and create plots.
 
 I don't intend to describe here the last part of this task - creation of
 plots in the office suite. There are bunch of good articles and videos
-on this topic [in the Internet][3]. Intead I want to concentrate on the
+on this topic [in the Internet][3]. Instead I want to concentrate on the
 csv-stuff: how to read and write csv files using Qt.
 
 Ok, let's define our task in more detail. For example, we have a list of
@@ -34,12 +34,12 @@ blue. So this data could be represented as this table:
 |  34 |    55 |   12 |
 | ... | ..... | .... |
 
-How we can export this table to csv-file? First of all, let's see what is
+How we can export such table to csv-file? First of all, let's see what is
 a csv-file. csv-file is a text file with quite a simple structure. Each
-line in such file interpreted as a single row of a table. Elements (or
-cell values) in the each row are separated with separator symbol (comma
-or tab or any other separator). So our table in csv-file will looks like
-this (with comma as separator symbol):
+line in csv-file is file interpreted as a single row of a table. Elements
+(or cell values) in the each row are separated with separator symbol (comma
+or tab or any other separator, even "avb!@;;"). So our table in csv-file
+will looks like this (with comma as separator symbol):
 
 ``` text
 red,green,blue
@@ -50,7 +50,7 @@ red,green,blue
 ```
 
 Good. Next question - how to create such file programmatically? No
-problem, here is the answer. Download this example project:
+problem, all the necessary code you'll find in this example project:
 
 https://github.com/iamantony/csv-read-write-example
 
@@ -168,8 +168,8 @@ But it have some drawbacks.
 
 1. Use only one type of data - strings. I mean, functions use list of
 strings as output/input objects, so before using these functions
-you must transform your data (integers, floats, other complex
-objects) to strings by yourself.
+you must transform your data (it could be integers, floats or other
+complex objects) to strings by yourself.
 
 2. High memory consumption.
 3. Parameters of file is hardcoded.
