@@ -172,10 +172,69 @@ you must transform your data (it could be integers, floats or other
 complex objects) to strings by yourself.
 
 2. High memory consumption.
-3. Parameters of file is hardcoded.
+    1. When you read the csv-file, all it's content will be loaded
+    to the memory. It's Ok when file is small, but what if it has
+    hundreds of thousands of lines? It's highly possible that
+    eventually you'll run out of memory and your program will crush.
+    2. When you write to the csv-file all your data primarily will
+    be converted to strings. So in memory you'll have two identical
+    copies of your data. After that when you stream your data to the
+    file it will be at first saved to some string buffer, checked,
+    converted and only after that will be written to the file.
+    
+3. Parameters of the file are hardcoded. It's name, open mode, type
+of separator and so on. If you want to change some of them, you'll
+have to manually amend code and recompile your program.
+
+To eliminate this drawbacks (well, most of themn) I wrote small
+library - **[qtcsv][6]**. It has class **Reader** that can read
+csv-files. It has class **Writer** that can wrtie csv-files.
+Also it has several container classes for data that is going to
+be written to csv-file. Please see [*Readme* file][7] for
+more detailed information about interfaces of the library.
+
+Here I'll show you quick example of usage of qtcsv library:
+
+```cpp
+#include <QList>
+#include <QStringList>
+#include <QDir>
+#include <QDebug>
+
+#include "stringdata.h"
+#include "reader.h"
+#include "writer.h"
+
+int main()
+{
+    // prepare data that you want to save to csv-file
+    QStringList strList;
+    strList << "one" << "two" << "three";
+
+    QtCSV::StringData strData;
+    strData.addRowValues(strList);
+    strData.addEmptyRow();
+    strData << strList << "this is the last row";
+
+    // write to file
+    QString filePath = QDir::currentPath() + "/test.csv";
+    QtCSV::Writer::write(filePath, strData);
+
+    // read data from file
+    QList<QStringList> readData = QtCSV::Reader::readToList(filePath);
+    for ( int i = 0; i < readData.size(); ++i )
+    {
+        qDebug() << readData.at(i).join(",");
+    }
+
+    return 0;
+}
+```
 
 [1]: http://matplotlib.org/
 [2]: http://en.wikipedia.org/wiki/Comma-separated_values
 [3]: http://lmgtfy.com/?q=how+to+create+plots+in+excel
 [4]: https://en.wikipedia.org/wiki/Pixel
 [5]: https://en.wikipedia.org/wiki/Histogram
+[6]: https://github.com/iamantony/qtcsv
+[7]: https://github.com/iamantony/qtcsv/blob/master/README.md
