@@ -6,16 +6,16 @@ author:
   url: {{ site.url }}
 ---
 
-About a year ago I worked on my home-project that was related to image
+About a year ago, I worked on my home-project that has relation to image
 compression. I used my favorite framework - Qt - and things were going
 well.
 
 Until I didn't have to plot some statistics data. If I were used Python,
 I would just import [matplotlib][1] library, add several lines of code
-and - whoop - get neat diagrams! But I used C++ and Qt. And I didn't want
-to make this task too complicated. So I decided that the simplest way
-for me was to export my data to [csv-file][2], open it with Microsoft
-Excel or LibreOffice Calc and create plots.
+and - whoop - get neat diagrams! However I used C++ and Qt. In addition, I
+didn't want to make this task too complicated. Therefore, I decided that the
+simplest way for me was to export my data to [csv-file][2], open it with
+Microsoft Excel or LibreOffice Calc and create plots.
 
 I don't intend to describe here the last part of this task - creation of
 plots in the office suite. There are bunch of good articles and videos
@@ -34,7 +34,7 @@ blue. So this data could be represented as this table:
 |  34 |    55 |   12 |
 | ... | ..... | .... |
 
-How we can export such table to csv-file? First of all, let's see what is
+How we can export such table to csv-file? First, let's see what is
 a csv-file. csv-file is a text file with quite a simple structure. Each
 line in csv-file is file interpreted as a single row of a table. Elements
 (or cell values) in the each row are separated with separator symbol (comma
@@ -152,12 +152,12 @@ int main()
 Code, that create and write csv-file is located in function WriteToCSV().
 It's very short, as you see. If you compile this project and run it,
 in project folder (or in build folder) will be created file with name
-*pixels.csv*. You can open it with your favourite text editor, you will
+*pixels.csv*. You can open it with your favorite text editor, you will
 see the desired numbers.
 
 Reading of the csv-file isn't a difficult task (also). In function
 ReadCSV() we open csv-file, read it line by line and split these
-lines by separator symbol. As the output we get list of lists of
+lines by separator symbol. As the output, we get list of lists of
 strings - elements of the table.
 
 You can use csv-files as a method to *export* data from your program
@@ -178,7 +178,7 @@ complex objects) to strings by yourself.
     eventually you'll run out of memory and your program will crush.
     2. When you write to the csv-file all your data primarily have to
     be converted to strings. It is OK if your data contains only strings,
-	so no conversion is needed. Otherwise in memory you'll have two identical
+	so no conversion is needed. Otherwise, in memory you'll have two identical
     copies of your data (original and stringified). After that when you stream
 	your data to the file it will be at first saved to some string buffer,
 	checked, converted and only after that will be written to the file.
@@ -187,9 +187,9 @@ complex objects) to strings by yourself.
 of separator and so on. If you want to change some of them, you'll
 have to manually amend code and recompile your program.
 
-To eliminate this drawbacks (well, most of themn) I wrote small
+To eliminate this drawbacks (well, most of them) I wrote small
 library - **[qtcsv][6]**. It has class **Reader** that can read csv-files.
-It has class **Writer** that can wrtie csv-files. Also it has several
+It has class **Writer** that can write csv-files. Also it has several
 container classes for data that is going to be written to csv-file. Let's
 examine it in more detail.
 
@@ -221,7 +221,7 @@ public:
 };
 ```
 
-As you can see, functions in **AbstractData** are olny declared, but not
+As you can see, functions in **AbstractData** are only declared, but not
 defined. And class **AbstractData** don't know how "raw" data is actually
 saved in container class. It is up to user to define such things in concrete
 classes.
@@ -243,7 +243,7 @@ In Qt *QVariant* is a very specific and useful type. It works like a wrapper for
 a many types. You can create *QVariant* variable from *int, string, bool,
 double* or Qt-specific classes like *QDate, QByteArray* and many others (see
 list of constructors of *QVariant* in [Qt documentation][11]). So if your data
-is a set of strings, ints and double, it is easier to use **VariantData** as
+is a set of strings, ints and doubles, it is easier to use **VariantData** as
 a container for your data than **StringData**. Because when it will be time to
 write your content to file, **VariantData** automatically transform data to
 strings.
@@ -306,7 +306,7 @@ Let's move on to additional arguments:
 
 That amount of arguments is explained by desire to provide the most flexible
 way of working with csv-files. You can change parameters on the fly, no
-recompilation (kinda my solution to the third drawback).
+recompilation (kind of my solution to the third drawback).
 
 **Writer** sends data to file by chunks. It collects several rows from original
 data, transform it to string (if necessary), adds separators, new line symbols
@@ -352,8 +352,11 @@ Both of the functions of the **Reader** class have two additional arguments:
 	the file. Use this argument if you want to read csv-file that was saved in
 	specific coding (like KOI8-R).
 
-Unfortuately **Reader** don't provide solution to drawback 2.1. It reads whole
-file at once and saves all its content to container.
+Unfortunately **Reader** don't provide solution to drawback 2.1. It reads the
+whole file at once and saves all its content to container.
+
+// TODO: conclusion
+// TODO: add link to example project that use qtcsv
 
 [1]: http://matplotlib.org/
 [2]: http://en.wikipedia.org/wiki/Comma-separated_values
