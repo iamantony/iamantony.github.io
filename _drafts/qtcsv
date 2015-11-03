@@ -308,7 +308,13 @@ That amount of arguments is explained by desire to provide the most flexible
 way of working with csv-files. You can change parameters on the fly, no
 recompilation (kinda my solution to the third drawback).
 
-**Writer** also provides solution to the 2.2 drawback. Internally...
+**Writer** sends data to file by chunks. It collects several rows from original
+data, transform it to string (if necessary), adds separators, new line symbols
+and send to QTextStream which is then send it to QFile. And then cycle repeats
+till there is no data left. This approach is very useful when you have big
+amount of data. **Writer** will not take much memory so your program will run
+smoothly. Also **Writer** provides solution to the 2.2 drawback. It will convert
+your data to strings only when it necessary.
 
 [1]: http://matplotlib.org/
 [2]: http://en.wikipedia.org/wiki/Comma-separated_values
