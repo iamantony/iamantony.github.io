@@ -254,6 +254,61 @@ need additional step of data transformation. In most cases. But if your data use
 specific type to store information, **VariantData** won't help here because it
 don't know how to transform your specific type to string. It will be your work.
 
+So now we know how to store information in containers of *qtcsv* library. Next
+let's see how to write it to csv-file. Here is **Writer** class:
+
+``` cpp
+class Writer
+{
+public:
+    enum WriteMode
+    {
+        REWRITE = 0,
+        APPEND
+    };
+
+    // Write data to csv-file
+    static bool write(const QString& filePath,
+                      const AbstractData& data,
+                      const QString& separator = ",",
+                      const WriteMode& mode = REWRITE,
+                      const QStringList& header = QStringList(),
+                      const QStringList& footer = QStringList(),
+                      QTextCodec* codec = QTextCodec::codecForLocale());
+};
+```
+
+**Writer** has only one function - write(). This function have many arguments,
+but most of them have default values. There are only two arguments that you must
+to specify:
+    * *filePath* -  this is a string with absolute path to csv-file. Examples of
+    absolute path:
+        * in Linux: /home/user/file.csv
+	    * in Windows: C:\\tmp\file.csv
+
+    There is one more requirement to *filePath*: it must ends with ".csv".
+    * *data* - this is a container object, derived from **AbstractData**.
+
+Let's move on to additional arguments:
+    * *separator* - it is a symbol that separates elements in a row in csv file;
+	* *mode* - this is write flag. If mode is set to WriteMode::APPEND
+	and csv-file exist, then new information will be appended to the end of the
+	file. If it set to WriteMode::REWRITE and csv-file exist, then all
+	information will be written to temporary csv-file and after that destination
+	csv-file will be replaced by this temporary file;
+	* *header* - strings that will be written at the beginning of the file,
+	separated with defined separator;
+	* *footer* -  strings that will be written at the end of the file, separated
+	with defined separator;
+	* *codec* - pointer to the codec object that will be used to write data to
+	the file. Use this argument if you want to save csv-file in specific coding
+	(like Windows-1251).
+
+That amount of arguments is explained by desire to provide the most flexible
+way of working with csv-files. You can change parameters on the fly, no
+recompilation (kinda my solution to the third drawback).
+
+**Writer** also provides solution to the 2.2 drawback. Internally...
 
 [1]: http://matplotlib.org/
 [2]: http://en.wikipedia.org/wiki/Comma-separated_values
