@@ -176,26 +176,84 @@ complex objects) to strings by yourself.
     to the memory. It's Ok when file is small, but what if it has
     hundreds of thousands of lines? It's highly possible that
     eventually you'll run out of memory and your program will crush.
-    2. When you write to the csv-file all your data primarily will
-    be converted to strings. So in memory you'll have two identical
-    copies of your data. After that when you stream your data to the
-    file it will be at first saved to some string buffer, checked,
-    converted and only after that will be written to the file.
+    2. When you write to the csv-file all your data primarily have to
+    be converted to strings. It is OK if your data contains only strings,
+	so no conversion is needed. Otherwise in memory you'll have two identical
+    copies of your data (original and stringified). After that when you stream
+	your data to the file it will be at first saved to some string buffer,
+	checked, converted and only after that will be written to the file.
     
-3. Parameters of the file are hardcoded. It's name, open mode, type
+3. Parameters of the file are hardcoded. Its' name, open mode, type
 of separator and so on. If you want to change some of them, you'll
 have to manually amend code and recompile your program.
 
 To eliminate this drawbacks (well, most of themn) I wrote small
 library - **[qtcsv][6]**. It has class **Reader** that can read csv-files.
 It has class **Writer** that can wrtie csv-files. Also it has several
-container classes for data that is going to be written to csv-file. Please
-see [*Readme* file][7] for more detailed information about interfaces of the
-library and few examples.
+container classes for data that is going to be written to csv-file. Let's
+examine it in more detail.
 
 *qtcsv* library have three container classes. [**AbstractData**][8]  is a pure
-abstract class that provide interface for a container classes
-[**StringData**][9] and [**VariantData**][10].
+abstract class that provide interface for a concrete container classes
+[**StringData**][9] and [**VariantData**][10]. It has only basics functions
+for adding new rows, getting rows values, clearing all data and checking if
+container is empty or not:
+
+``` cpp
+class AbstractData
+{
+public:
+    explicit AbstractData() {}
+    virtual ~AbstractData() {}
+
+    // Add new empty row
+    virtual void addEmptyRow() = 0;
+    // Add new row with specified values (as strings)
+    virtual void addRow(const QStringList& values) = 0;
+    // Clear all data
+    virtual void clear() = 0;
+    // Check if there are any rows
+    virtual bool isEmpty() const = 0;
+    // Get number of rows
+    virtual int rowCount() const = 0;
+    // Get values of specified row as list of strings
+    virtual QStringList rowValues(const int& row) const = 0;
+};
+```
+
+As you can see, functions in **AbstractData** are olny declared, but not
+defined. And class **AbstractData** don't know how "raw" data is actually
+saved in container class. It is up to user to define such things in concrete
+classes.
+
+First concrete container class in **qtcsv** library is **StringData**. From
+its name you can guess how this container hold data. Yes, in strings. Or to be
+more precise - in *QList<QStringList>*. **StringData** implements all abstract
+functions of **AbstractData** plus it has some container-specific functions
+like insertRow(), replaceRow() and operator<<(). **StringData** works only with
+strings. It accepts new data only in strings, it returns data in strings and
+so on. So it is best to use **StringData** if your data is already represented
+in strings.
+
+Second concrete container class in **qtcsv** library is **VariantData**. As
+**StringData**, it implements all abstract functions of **AbstractData** plus it
+has some container-specific functions. The main difference is that
+**VariantData** holds data in [*QVariant*][11] type (*QList<QList<QVariant>>*).
+In Qt *QVariant* is a very specific and useful type. It works like a wrapper for
+a many types. You can create *QVariant* variable from *int, string, bool,
+double* or Qt-specific classes like *QDate, QByteArray* and many others (see
+list of constructors of *QVariant* in [Qt documentation][11]). So if your data
+is a set of strings, ints and double, it is easier to use **VariantData** as
+a container for your data than **StringData**. Because when it will be time to
+write your content to file, **VariantData** automatically transform data to
+strings.
+
+I see the use of **VariantData** as a solution to the first drawback of the
+traditional approach to working with csv-files. With **VariantData** you don't
+need additional step of data transformation. In most cases. But if your data use
+specific type to store information, **VariantData** won't help here because it
+don't know how to transform your specific type to string. It will be your work.
+
 
 [1]: http://matplotlib.org/
 [2]: http://en.wikipedia.org/wiki/Comma-separated_values
@@ -207,3 +265,4 @@ abstract class that provide interface for a container classes
 [8]: https://github.com/iamantony/qtcsv/blob/master/src/include/abstractdata.h
 [9]: https://github.com/iamantony/qtcsv/blob/master/src/include/stringdata.h
 [10]: https://github.com/iamantony/qtcsv/blob/master/src/include/variantdata.h
+[11]: http://doc.qt.io/qt-5/qvariant.html
