@@ -339,7 +339,7 @@ public:
 
 **Reader** have two functions. The first - readToList() - read the csv-file
 into list of strings. Pretty straightforward, just like functions ReadCSV()
-in the beginning of this post. The second function = readToData() - is a little
+in the beginning of this post. The second function - readToData() - is a little
 more interesting. It will read csv-file the same way as the first function,
 but it will save read data into AbstractData-based container using function 
 *addRow(QStringList)*. You can create your own AbstractData-based container and
@@ -355,8 +355,15 @@ Both of the functions of the **Reader** class have two additional arguments:
 Unfortunately **Reader** don't provide solution to drawback 2.1. It reads the
 whole file at once and saves all its content to container.
 
-// TODO: conclusion
-// TODO: add link to example project that use qtcsv
+And this is it. I reviewed all public classes of qtcsv library. I don't think
+it is perfect - it is definitely not. qtcsv do not eliminate all the drawbacks
+I have mentioned. But it provides simple and easy-to-use interface to work with
+csv-files. Plus it could be extended to meet your needs.
+
+I also created example project, that use qtcsv library. It's like a quick-start
+or playground. I hope it will be useful for your.
+
+https://github.com/iamantony/qtcsv-example.git
 
 [1]: http://matplotlib.org/
 [2]: http://en.wikipedia.org/wiki/Comma-separated_values
