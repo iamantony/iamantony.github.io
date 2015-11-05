@@ -149,14 +149,14 @@ int main()
 }
 ```
 
-Code, that create and write csv-file is located in function WriteToCSV().
+Code, that create and write csv-file is located in function *WriteToCSV()*.
 It's very short, as you see. If you compile this project and run it,
 in project folder (or in build folder) will be created file with name
 *pixels.csv*. You can open it with your favorite text editor, you will
 see the desired numbers.
 
 Reading of the csv-file isn't a difficult task (also). In function
-ReadCSV() we open csv-file, read it line by line and split these
+*ReadCSV()* we open csv-file, read it line by line and split these
 lines by separator symbol. As the output, we get list of lists of
 strings - elements of the table.
 
@@ -178,18 +178,18 @@ complex objects) to strings by yourself.
     eventually you'll run out of memory and your program will crush.
     2. When you write to the csv-file all your data primarily have to
     be converted to strings. It is OK if your data contains only strings,
-	so no conversion is needed. Otherwise, in memory you'll have two identical
+    so no conversion is needed. Otherwise, in memory you'll have two identical
     copies of your data (original and stringified). After that when you stream
-	your data to the file it will be at first saved to some string buffer,
-	checked, converted and only after that will be written to the file.
+    your data to the file it will be at first saved to some string buffer,
+    checked, converted and only after that will be written to the file.
     
 3. Parameters of the file are hardcoded. Its' name, open mode, type
 of separator and so on. If you want to change some of them, you'll
 have to manually amend code and recompile your program.
 
 To eliminate this drawbacks (well, most of them) I wrote small
-library - **[qtcsv][6]**. It has class **Reader** that can read csv-files.
-It has class **Writer** that can write csv-files. Also it has several
+library - **[qtcsv][6]**. It has class [**Reader**][7] that can read csv-files.
+It has class [**Writer**][12] that can write csv-files. Also it has several
 container classes for data that is going to be written to csv-file. Let's
 examine it in more detail.
 
@@ -226,19 +226,19 @@ defined. And class *AbstractData* don't know how "raw" data is actually
 saved in container class. It is up to user to define such things in concrete
 classes.
 
-First concrete container class in *qtcsv* library is *StringData*. From
+First concrete container class in *qtcsv* library is [*StringData*][9]. From
 its name you can guess how this container hold data. Yes, in strings. Or to be
-more precise - in *QList<QStringList>*. *StringData* implements all abstract
+more precise - in *QList\<QStringList\>*. *StringData* implements all abstract
 functions of *AbstractData* plus it has some container-specific functions
 like *insertRow(), replaceRow() and operator<<()*. *StringData* works only with
 strings. It accepts new data only in strings, it returns data in strings and
 so on. So it is best to use *StringData* if your data is already represented
 in strings.
 
-Second concrete container class in *qtcsv* library is *VariantData*. As
+Second concrete container class in *qtcsv* library is [*VariantData*][10]. As
 *StringData*, it implements all abstract functions of *AbstractData* plus it
 has some container-specific functions. The main difference is that
-*VariantData* holds data in [*QVariant*][11] type (*QList<QList<QVariant>>*).
+*VariantData* holds data in [*QVariant*][11] type (*QList\<QList\<QVariant\>\>*).
 In Qt *QVariant* is a very specific and useful type. It works like a wrapper for
 a many types. You can create *QVariant* variable from *int, string, bool,
 double* or Qt-specific classes like *QDate, QByteArray* and many others (see
@@ -255,7 +255,7 @@ specific type to store information, *VariantData* won't help here because it
 don't know how to transform your specific type to string. It will be your work.
 
 So now we know how to store information in containers of *qtcsv* library. Next
-let's see how to write it to csv-file. Here is *Writer* class:
+let's see how to write it to csv-file. Here is [*Writer*][12] class:
 
 ``` cpp
 class Writer
@@ -278,7 +278,7 @@ public:
 };
 ```
 
-*Writer* has only one function - write(). This function have many arguments,
+*Writer* has only one function - *write()*. This function have many arguments,
 but most of them have default values. There are only two arguments that you must
 to specify:
 
@@ -294,19 +294,19 @@ to specify:
 
 Let's move on to additional arguments:
 
-    - *separator* - it is a symbol that separates elements in a row in csv file;
-	- *mode* - this is write flag. If mode is set to WriteMode::APPEND
-	and csv-file exist, then new information will be appended to the end of the
-	file. If it set to WriteMode::REWRITE and csv-file exist, then all
-	information will be written to temporary csv-file and after that destination
-	csv-file will be replaced by this temporary file;
-	- *header* - strings that will be written at the beginning of the file,
-	separated with defined separator;
-	- *footer* -  strings that will be written at the end of the file, separated
-	with defined separator;
-	- *codec* - pointer to the codec object that will be used to write data to
-	the file. Use this argument if you want to save csv-file in specific coding
-	(like Windows-1251).
+    - separator - it is a symbol that separates elements in a row in csv file;
+    - mode - this is write flag. If mode is set to WriteMode::APPEND
+    and csv-file exist, then new information will be appended to the end of the
+    file. If it set to WriteMode::REWRITE and csv-file exist, then all
+    information will be written to temporary csv-file and after that destination
+    csv-file will be replaced by this temporary file;
+    - header - strings that will be written at the beginning of the file,
+    separated with defined separator;
+    - footer -  strings that will be written at the end of the file, separated
+    with defined separator;
+    - codec - pointer to the codec object that will be used to write data to
+    the file. Use this argument if you want to save csv-file in specific coding
+    (like Windows-1251).
 
 That amount of arguments is explained by desire to provide the most flexible
 way of working with csv-files. You can change parameters on the fly, no
@@ -314,13 +314,13 @@ recompilation (kind of my solution to the third drawback).
 
 *Writer* sends data to file by chunks. It collects several rows from original
 data, transform it to string (if necessary), adds separators, new line symbols
-and send to QTextStream which is then send it to QFile. And then cycle repeats
+and send to *QTextStream* which is then send it to *QFile*. And then cycle repeats
 till there is no data left. This approach is very useful when you have big
 amount of data. *Writer* will not take much memory so your program will run
 smoothly. Also *Writer* provides solution to the 2.2 drawback. It will convert
 your data to strings only when it necessary.
 
-Finally we get to the *Reader*. The purpose of this class is obvious - reading
+Finally we get to the [*Reader*][7]. The purpose of this class is obvious - reading
 content of the csv-file. Here is its interface:
 
 ``` cpp
@@ -352,10 +352,10 @@ convert this strings the way you want it.
 
 Both of the functions of the *Reader* class have two additional arguments:
 
-    - *separator* - it is a symbol that separates elements in a row in csv file;
-    - *codec* - pointer to the codec object that will be used to read data from
-	the file. Use this argument if you want to read csv-file that was saved in
-	specific coding (like KOI8-R).
+    - separator - it is a symbol that separates elements in a row in csv file;
+    - codec - pointer to the codec object that will be used to read data from
+    the file. Use this argument if you want to read csv-file that was saved in
+    specific coding (like KOI8-R).
 
 Unfortunately *Reader* don't provide solution to drawback 2.1. It reads the
 whole file at once and saves all its content to container.
@@ -376,8 +376,9 @@ https://github.com/iamantony/qtcsv-example.git
 [4]: https://en.wikipedia.org/wiki/Pixel
 [5]: https://en.wikipedia.org/wiki/Histogram
 [6]: https://github.com/iamantony/qtcsv
-[7]: https://github.com/iamantony/qtcsv/blob/master/README.md
+[7]: https://github.com/iamantony/qtcsv/blob/master/src/include/reader.h
 [8]: https://github.com/iamantony/qtcsv/blob/master/src/include/abstractdata.h
 [9]: https://github.com/iamantony/qtcsv/blob/master/src/include/stringdata.h
 [10]: https://github.com/iamantony/qtcsv/blob/master/src/include/variantdata.h
 [11]: http://doc.qt.io/qt-5/qvariant.html
+[12]: https://github.com/iamantony/qtcsv/blob/master/src/include/writer.h
