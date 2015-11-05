@@ -1,5 +1,5 @@
 ---
-title: Working with csv-files in Qt: qtcsv library
+title: Working with csv-files in Qt - qtcsv library
 layout: default
 author:
   name: Antony Cherepanov
