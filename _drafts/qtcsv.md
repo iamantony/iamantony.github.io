@@ -172,16 +172,18 @@ you must transform your data (it could be integers, floats or other
 complex objects) to strings by yourself.
 
 2. High memory consumption.
-    1. When you read the csv-file, all it's content will be loaded
-    to the memory. It's Ok when file is small, but what if it has
-    hundreds of thousands of lines? It's highly possible that
-    eventually you'll run out of memory and your program will crush.
-    2. When you write to the csv-file all your data primarily have to
-    be converted to strings. It is OK if your data contains only strings,
-    so no conversion is needed. Otherwise, in memory you'll have two identical
-    copies of your data (original and stringified). After that when you stream
-    your data to the file it will be at first saved to some string buffer,
-    checked, converted and only after that will be written to the file.
+    
+  2.1. When you read the csv-file, all it's content will be loaded
+  to the memory. It's Ok when file is small, but what if it has
+  hundreds of thousands of lines? It's highly possible that
+  eventually you'll run out of memory and your program will crush.
+  
+  2.2. When you write to the csv-file all your data primarily have to
+  be converted to strings. It is OK if your data contains only strings,
+  so no conversion is needed. Otherwise, in memory you'll have two identical
+  copies of your data (original and stringified). After that when you stream
+  your data to the file it will be at first saved to some string buffer,
+  checked, converted and only after that will be written to the file.
     
 3. Parameters of the file are hardcoded. Its' name, open mode, type
 of separator and so on. If you want to change some of them, you'll
@@ -282,31 +284,29 @@ public:
 but most of them have default values. There are only two arguments that you must
 to specify:
 
-    - *filePath* -  this is a string with absolute path to csv-file. Examples of
-    absolute path:
-
-        - in Linux: /home/user/file.csv
-        - in Windows: C:\\tmp\file.csv
+  - *filePath* -  this is a string with absolute path to csv-file. Examples of absolute path:
+    - in Linux: /home/user/file.csv
+    - in Windows: C:\\tmp\file.csv
 
     There is one more requirement to *filePath*: it must ends with ".csv".
-    
-    - *data* - this is a container object, derived from *AbstractData*.
+
+  - *data* - this is a container object, derived from *AbstractData*.
 
 Let's move on to additional arguments:
 
-    - separator - it is a symbol that separates elements in a row in csv file;
-    - mode - this is write flag. If mode is set to WriteMode::APPEND
-    and csv-file exist, then new information will be appended to the end of the
-    file. If it set to WriteMode::REWRITE and csv-file exist, then all
-    information will be written to temporary csv-file and after that destination
-    csv-file will be replaced by this temporary file;
-    - header - strings that will be written at the beginning of the file,
-    separated with defined separator;
-    - footer -  strings that will be written at the end of the file, separated
-    with defined separator;
-    - codec - pointer to the codec object that will be used to write data to
-    the file. Use this argument if you want to save csv-file in specific coding
-    (like Windows-1251).
+  - *separator* - it is a symbol that separates elements in a row in csv file;
+  - *mode* - this is write flag. If mode is set to WriteMode::APPEND
+  and csv-file exist, then new information will be appended to the end of the
+  file. If it set to WriteMode::REWRITE and csv-file exist, then all
+  information will be written to temporary csv-file and after that destination
+  csv-file will be replaced by this temporary file;
+  - *header* - strings that will be written at the beginning of the file,
+  separated with defined separator;
+  - *footer* -  strings that will be written at the end of the file, separated
+  with defined separator;
+  - *codec* - pointer to the codec object that will be used to write data to
+  the file. Use this argument if you want to save csv-file in specific coding
+  (like Windows-1251).
 
 That amount of arguments is explained by desire to provide the most flexible
 way of working with csv-files. You can change parameters on the fly, no
@@ -352,10 +352,10 @@ convert this strings the way you want it.
 
 Both of the functions of the *Reader* class have two additional arguments:
 
-    - separator - it is a symbol that separates elements in a row in csv file;
-    - codec - pointer to the codec object that will be used to read data from
-    the file. Use this argument if you want to read csv-file that was saved in
-    specific coding (like KOI8-R).
+  - *separator* - it is a symbol that separates elements in a row in csv file;
+  - *codec* - pointer to the codec object that will be used to read data from
+  the file. Use this argument if you want to read csv-file that was saved in
+  specific coding (like KOI8-R).
 
 Unfortunately *Reader* don't provide solution to drawback 2.1. It reads the
 whole file at once and saves all its content to container.
