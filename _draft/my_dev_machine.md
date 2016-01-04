@@ -39,7 +39,7 @@ check this folders:
 ```
 
 I found CD image mounted to "/media/cdrom0". It should contain this files:
-(add image)
+![List of file in Guest Additions CD]({{ site.url }}/images/my_dev_machine/files_in_guest_addtions_cd.png)
 
 Run this command to install VirtualBox Guest Additions:
 ``` bash
@@ -47,7 +47,7 @@ sudo sh ./VBoxLinuxAdditions.run
 ```
 
 It is very likely that installation will go smoothly and you will see something like this:
-(add image)
+![Installation of Guest Additions]({{ site.url }}/images/my_dev_machine/installation_of_guest_addtions.png)
 
 If during installation something went wrong, in program output you will get some hints what you need to do
 (for example, install missed packages).
