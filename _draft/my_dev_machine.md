@@ -20,7 +20,7 @@ Under root user we can perform upgrade of OS and install additional packages:
 ``` bash
     apt-get update
     apt-get upgrade
-    apt-get intall sudo mc synaptic linux-headers-$(uname -r) gcc g++ make git
+    apt-get intall sudo mc synaptic top htop linux-headers-$(uname -r) gcc g++ make git
 ```
 
 After this commands I recommend to reboot your VOS to "apply changes" in OS.
@@ -60,6 +60,8 @@ If during installation something went wrong, in program output you will get some
 
 After successful installation of VirtualBox Guest Additions reboot your OS. If after reboot of VOS its screen
 size will be adapted to the size of VirtualBox window, then Guest Additions work properly.
+
+#### Set up shared folders
 
 ### Install last version of gcc
 
