@@ -7,20 +7,39 @@ Call OS that will be installed as Virtual OS as VOS.
 ## Install VOS
 
 ## Install software
+After successful installation of VOS, let's fill it up with usefull software. At the first step
+I recommend to do basic stuff.
+
+### Basic
+If your VOS is **Debian**, than first of all let's install *sudo* package:
+``` bash
+    # switch to root user
+    su
+    # enter root password
+    
+    apt-get install sudo
+```
+
+Then we should enable *sudo* for our main user:
+``` bash
+    usermod -aG sudo user_name
+```
+
+If your VOS is **Ubuntu**, then you already have *sudo* package.
+
+Update and upgrade your VOS and install basic software:
+``` bash
+    sudo apt-get update
+    sudo apt-get upgrade
+    sudo apt-get intall mc synaptic top htop gcc g++ make git
+```
+
 ### Install VirtualBox Guest Additions
 Why we should install Guest Additions?
 
-First of all lets switch to root user.
+Let's install additional packages:
 ``` bash
-    su
-    # enter root password
-```
-
-Under root user we can perform upgrade of OS and install additional packages:
-``` bash
-    apt-get update
-    apt-get upgrade
-    apt-get intall sudo mc synaptic top htop linux-headers-$(uname -r) gcc g++ make git
+    apt-get intall linux-headers-$(uname -r)
 ```
 
 After this commands I recommend to reboot your VOS to "apply changes" in OS.
