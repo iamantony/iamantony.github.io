@@ -16,10 +16,12 @@ Under root user we can perform upgrade of OS and install additional packages:
 ``` bash
     apt-get update
     apt-get upgrade
-    apt-get intall sudo mc synaptic gcc g++ git
+    apt-get intall sudo mc synaptic linux-headers-$(uname -r) gcc g++ make git
 ```
 
-In VirtualBox menu choose Devices -> Insert Guest Additions CD image... (don't forget
+After this commands I recommend to reboot your VOS to "apply changes" in OS.
+
+After VOS reboot in VirtualBox menu choose Devices -> Insert Guest Additions CD image... (don't forget
 to check if virtual CD-drive of your Virtual OS is empty). VirtualBox will try to
 mount its "Guest Additions CD" into VOS CD-drive. 
 
@@ -47,4 +49,6 @@ sudo sh ./VBoxLinuxAdditions.run
 It is very likely that installation will go smoothly and you will see something like this:
 (add image)
 
-If during installation something went wrong, in program output you will get some hints what you need to do.
+If during installation something went wrong, in program output you will get some hints what you need to do
+(for example, install missed packages).
+
