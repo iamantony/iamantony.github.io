@@ -88,31 +88,26 @@ in HOS and share it with GOS so I can work with my projects files in both OS-s.
 
 Let's share Projects folder with GOS (with the help of [this article][mount_shared_folder]):
 
-1. In GOS open terminal.
-2. Create folder with the same name - Projects. Where it should be located? I prefer to create it in
-home folder:
-    ``` bash
-        mkdir /home/user_name/Projects
-    ```
+1. In VirtualBox Manager open Settings of your GOS.
+2. In "Shared folders" section add shared folder "Projects" (don't forget to set
+"Auto-mount" option).
 
-3. Open file /etc/rc.local:
+![Add Shared folder]({{ site.url }}/images/my_dev_machine/add_shared_folder.png)
+
+3. Start your GOS and open Terminal.
+4. Add your user to group "vboxsf" to see content of the shared folders:
     ``` bash
-        sudo nano /etc/rc.local
+        sudo usermod -aG vboxsf user_name
     ```
     
-4. Add command for mounting shared folder (before line "exit 0"):
-    ``` bash
-        mount -t vboxsf Projects /home/user_name/Projects
-        
-        # To exit nano press "Ctrl+X", then "Y" to apply changes and finally "Enter"
-    ```
+5. Shared folder will be automatically be mounted to **/media/user_name/sf_Projects** or
+**/media/sf_Projects**. Check that you can see content of shared folder.
 
-5. Shutdown GOS.
-6. In VirtualBox Manager open Settings of your GOS.
-7. In "Shared folders" section add shared folder "Projects" (don't forget to set
-"Auto-mount" option).
-8. Start your GOS and check that in created folder "Projects" you can see content of the
-shared folder "Projects".
+6. For easy access / convenience, you may create a symbolic link to the mounted shared
+folder in your home folder:
+    ``` bash
+        sudo ln -s /media/sf_Projects /home/user_name/Projects
+    ```
 
 ### Install last version of gcc
 
