@@ -1,8 +1,16 @@
 # My Dev Machine
+Why I need such dev machine?
+What I will finally get?
 
 ## VirtualBox
+What it is? 
+Why I choosed VirtualBox? 
+What about Docker? 
+Docker on Windows?
+
 ## Choose OS
-Call OS that will be installed as Virtual OS as VOS.
+Call OS that will be installed as Guest OS as GOS, host OS - HOS.
+Why I use Linux?
 
 ## Install VOS
 
@@ -11,7 +19,7 @@ After successful installation of VOS, let's fill it up with usefull software. At
 I recommend to do basic stuff.
 
 ### Basic
-If your VOS is **Debian**, than first of all let's install *sudo* package:
+If your GOS is **Debian**, than first of all let's install *sudo* package:
 ``` bash
     # switch to root user
     su
@@ -25,9 +33,9 @@ Then we should enable *sudo* for our main user:
     usermod -aG sudo user_name
 ```
 
-If your VOS is **Ubuntu**, then you already have *sudo* package.
+If your GOS is **Ubuntu**, then you already have *sudo* package.
 
-Update and upgrade your VOS and install basic software:
+Update and upgrade your GOS and install basic software:
 ``` bash
     sudo apt-get update
     sudo apt-get upgrade
@@ -42,18 +50,18 @@ Let's install additional packages:
     apt-get intall linux-headers-$(uname -r)
 ```
 
-After this commands I recommend to reboot your VOS to "apply changes" in OS.
+After this commands I recommend to reboot your GOS to "apply changes" in OS.
 
-After VOS reboot in VirtualBox menu choose Devices -> Insert Guest Additions CD image... (don't forget
+After GOS reboot in VirtualBox menu choose Devices -> Insert Guest Additions CD image... (don't forget
 to check if virtual CD-drive of your Virtual OS is empty). VirtualBox will try to
-mount its "Guest Additions CD" into VOS CD-drive. 
+mount its "Guest Additions CD" into GOS CD-drive. 
 
-If your VOS is **Ubuntu**, then you will see mount dialog (add picture) with question should the VOS run
+If your GOS is **Ubuntu**, then you will see mount dialog (add picture) with question should the GOS run
 autorun.sh file on CD. Just press Run. After that Terminal window will be opened and
 installation of VirtualBox Additions will be started (maybe at first you will be asked
 for admin password) (add picture).
 
-If your VOS is **Debian**, then find out where "Guest Additions CD" was mounted. I recommend to
+If your GOS is **Debian**, then find out where "Guest Additions CD" was mounted. I recommend to
 check this folders:
 ``` txt
 /media/cdrom0
@@ -77,10 +85,42 @@ It is very likely that installation will go smoothly and you will see something 
 If during installation something went wrong, in program output you will get some hints what you need to do
 (for example, install missed packages).
 
-After successful installation of VirtualBox Guest Additions reboot your OS. If after reboot of VOS its screen
+After successful installation of VirtualBox Guest Additions reboot your GOS. If after reboot of GOS its screen
 size will be adapted to the size of VirtualBox window, then Guest Additions work properly.
 
 #### Set up shared folders
+One of the advantages of the VirtualBox are shared folders. In HOS you can set some folders to be shared
+so in GOS you will see them. You can share folders in read-only mode or give full access to them.
+This is very useful feature. With it I can have only one folder with my projects. I create such folder
+in HOS and share it with GOS so I can work with my projects files in both OS-s.
+
+Let's share Projects folder with GOS:
+
+1. In GOS open terminal.
+2. Create folder with the same name - Projects. Where it should be located? I prefer to create it in
+home folder:
+    ``` bash
+        mkdir /home/user_name/Projects
+    ```
+
+3. Open file /etc/rc.local:
+    ``` bash
+        sudo nano /etc/rc.local
+    ```
+    
+4. Add command for mounting shared folder (before line "exit 0"):
+    ``` bash
+        mount -t vboxsf Projects /home/user_name/Projects
+        
+        # To exit nano press "Ctrl+X", then "Y" to apply changes and finally "Enter"
+    ```
+
+5. Shutdown GOS.
+6. In VirtualBox Manager open Settings of your GOS.
+7. In "Shared folders" section add shared folder "Projects" (don't forget to set
+"Auto-mount" option).
+8. Start your GOS and check that in created folder "Projects" you can see content of the
+shared folder "Projects".
 
 ### Install last version of gcc
 
