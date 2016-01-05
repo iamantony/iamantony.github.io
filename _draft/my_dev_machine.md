@@ -94,7 +94,7 @@ so in GOS you will see them. You can share folders in read-only mode or give ful
 This is very useful feature. With it I can have only one folder with my projects. I create such folder
 in HOS and share it with GOS so I can work with my projects files in both OS-s.
 
-Let's share Projects folder with GOS:
+Let's share Projects folder with GOS (with the help of [this article][mount_shared_folder]):
 
 1. In GOS open terminal.
 2. Create folder with the same name - Projects. Where it should be located? I prefer to create it in
@@ -142,3 +142,6 @@ shared folder "Projects".
 #### Python 3.5.X
 
 ### Install PyCharm
+
+
+[mount_shared_folder]: http://www.htpcbeginner.com/mount-virtualbox-shared-folder-on-ubuntu-linux/
