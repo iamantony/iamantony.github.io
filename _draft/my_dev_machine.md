@@ -106,7 +106,8 @@ Let's share Projects folder with GOS (with the help of [this article][mount_shar
 6. For easy access / convenience, you may create a symbolic link to the mounted shared
 folder in your home folder:
     ``` bash
-        sudo ln -s /media/sf_Projects /home/user_name/Projects
+        cd /home/user_name
+        sudo ln -s /media/sf_Projects Projects
     ```
 
 ### Install last version of gcc
