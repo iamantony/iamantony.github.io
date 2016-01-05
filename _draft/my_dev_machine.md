@@ -19,7 +19,7 @@ After successful installation of VOS, let's fill it up with usefull software. At
 I recommend to do basic stuff.
 
 ### Basic
-If your GOS is **Debian**, than first of all let's install *sudo* package:
+First of all let's install *sudo* package:
 ``` bash
     # switch to root user
     su
@@ -32,8 +32,6 @@ Then we should enable *sudo* for our main user:
 ``` bash
     usermod -aG sudo user_name
 ```
-
-If your GOS is **Ubuntu**, then you already have *sudo* package.
 
 Update and upgrade your GOS and install basic software:
 ``` bash
@@ -56,13 +54,7 @@ After GOS reboot in VirtualBox menu choose Devices -> Insert Guest Additions CD 
 to check if virtual CD-drive of your Virtual OS is empty). VirtualBox will try to
 mount its "Guest Additions CD" into GOS CD-drive. 
 
-If your GOS is **Ubuntu**, then you will see mount dialog (add picture) with question should the GOS run
-autorun.sh file on CD. Just press Run. After that Terminal window will be opened and
-installation of VirtualBox Additions will be started (maybe at first you will be asked
-for admin password) (add picture).
-
-If your GOS is **Debian**, then find out where "Guest Additions CD" was mounted. I recommend to
-check this folders:
+Find out where "Guest Additions CD" was mounted. I recommend to check this folders:
 ``` txt
 /media/cdrom0
 /home/user_name/media
