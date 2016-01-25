@@ -160,8 +160,11 @@ I found CD image mounted to "/media/cdrom0". It should contain this files:
 
 ![List of file in Guest Additions CD]({{ site.url }}/images/my_dev_machine/files_in_guest_additions_cd.png)
 
-Run this command to install VirtualBox Guest Additions:
+Run this commands to install VirtualBox Guest Additions:
 ``` bash
+mkdir vbox
+cp -r /media/cdrom0/* ~/vbox
+cd ./vbox
 sudo sh ./VBoxLinuxAdditions.run
 ```
 
@@ -174,6 +177,11 @@ If during installation something went wrong, in program output you will get some
 
 After successful installation of VirtualBox Guest Additions reboot your GOS. If after reboot of GOS its screen
 size will be adapted to the size of VirtualBox window, then Guest Additions work properly.
+
+Don't forget to remove temporary directory *vbox* from your home directory:
+``` bash
+sudo rm -r ~/vbox
+```
 
 #### Set up shared folders
 One of the advantages of the VirtualBox are shared folders. In HOS you can set some folders to be shared
