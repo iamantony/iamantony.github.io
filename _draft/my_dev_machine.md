@@ -260,16 +260,27 @@ check the settings (don't forget to check that all installed Qt versions are ava
 try to compile some simple project to check that all is working fine.
 
 ### Install Boost
+The simpliest way to get Boost is to install it from Debian repository. In Debian 8 there is
+available Boost 1.55. It's quite old version of library (11.2013), but stable and sufficient
+for most users.
+``` bash
+sudo apt-get install libboost-all-dev
+```
+
+If you want to use latest version of Boost, go to [Boost SourceForge page][boostdownload] and
+download latest stable release of Boost. Extract content of the archive to some folder
+(for example, */opt/boost_1.X*) and read manuals about how to use it (and build, if necessary):
+
+http://www.boost.org/doc/libs/1_60_0/more/getting_started/unix-variants.html#or-build-custom-binaries
+
+http://www.linuxfromscratch.org/blfs/view/svn/general/boost.html
+
+http://ubuntuforums.org/showthread.php?t=1180792
 
 ### Install Eclipse
 
 #### Setup Eclipse
 (Add link to settings files)
-
-### Install Python
-#### Python 2.7.X
-
-#### Python 3.5.X
 
 ### Install PyCharm
 
@@ -285,3 +296,4 @@ try to compile some simple project to check that all is working fine.
 [qtsite]: http://www.qt.io/download-open-source/
 [qt486inst]: http://doc.qt.io/qt-4.8/install-x11.html
 [qt486config]: http://doc.qt.io/qt-4.8/configure-options.html
+[boostdownload]: http://sourceforge.net/projects/boost/files/boost/
