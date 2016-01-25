@@ -223,13 +223,13 @@ there is new a *folder* Projects and you can see it's content.
 [How to configure Qt 4.8.6 on Linux.][qt486config]
 
 ``` bash
-sudo apt-get intall sqlite3 postgresql pgadmin3 libpq-dev libcups2-dev libdbus-1-dev libx11-dev libxext-dev
+sudo apt-get intall sqlite3 postgresql pgadmin3 libpq-dev libcups2-dev libdbus-1-dev libx11-dev libxext-dev libicu-dev
 sudo mkdir /opt/qt-4.8.6
 cd /opt/qt-4.8.6
 sudo wget http://download.qt.io/archive/qt/4.8/4.8.6/qt-everywhere-opensource-src-4.8.6.tar.gz
 sudo tar xvf qt-everywhere-opensource-src-4.8.6.tar.gz
 cd qt-everywhere-opensource-src-4.8.6
-sudo ./configure -v -debug-and-release -opensource -shared -qt-zlib -qt-libpng -qt-libtiff -qt-libjpeg -dbus -cups -nomake examples -nomake demos
+sudo ./configure -v -debug -opensource -shared -qt-zlib -qt-libpng -qt-libtiff -qt-libjpeg -dbus -cups -nomake examples -nomake demos
 ```
 
 After configuration Qt will show you which modules it will support (SQLite, ALSA, zlib and so on).
