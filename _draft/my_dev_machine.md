@@ -278,16 +278,35 @@ http://www.linuxfromscratch.org/blfs/view/svn/general/boost.html
 http://ubuntuforums.org/showthread.php?t=1180792
 
 ### Install Eclipse
+Eclipse is a very powerful IDE with many features, outdated UI and tricky project
+configuration process. I usually use it for plain C++ projects. Try it. Maybe you'll
+like it. You can download installer archive [here][eclipsedownload].
+
+``` bash
+sudo apt-get install openjdk-7-jdk libcanberra-gtk-module
+sudo mkdir /opt/eclipse
+cd /opt/eclipse
+sudo cp /path/to/eclipse-*.tar.gz /opt/eclipse
+sudo tar xvf eclipse-*.tar.gz
+sudo cd eclipse
+sudo ./eclipse
+```
+
+Last command start Eclipse IDE. How to create desktop shortcut:
 
 #### Setup Eclipse
 (Add link to settings files)
 
 ### Install PyCharm
+I love IDE from JetBrains and I think PyCharm is the best free IDE for Python.
+You can download it [here][pycharmdownload] (choose Community Edition).
 
 ### Install Java
 #### JVM
 
-#### JetBrains IDEA
+#### IntelliJ IDEA
+Another IDE from JetBrains. This time for Java.
+You can download it [here][ideadownload] (choose Community Edition and *.tar.gz* extension).
 
 [stuff]: http://www.youtube.com/watch?v=MvgN5gCuLac
 [vb_site]: https://www.virtualbox.org/
@@ -297,3 +316,6 @@ http://ubuntuforums.org/showthread.php?t=1180792
 [qt486inst]: http://doc.qt.io/qt-4.8/install-x11.html
 [qt486config]: http://doc.qt.io/qt-4.8/configure-options.html
 [boostdownload]: http://sourceforge.net/projects/boost/files/boost/
+[eclipsedownload]:http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/mars/1/eclipse-cpp-mars-1-linux-gtk-x86_64.tar.gz
+[pycharmdownload]: https://www.jetbrains.com/pycharm/download/#section=linux
+[ideadownload]: https://www.jetbrains.com/idea/#chooseYourEdition
