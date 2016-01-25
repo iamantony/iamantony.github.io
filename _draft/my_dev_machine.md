@@ -132,7 +132,7 @@ Update and upgrade your GOS and install basic software:
 ``` bash
     sudo apt-get update
     sudo apt-get upgrade
-    sudo apt-get intall mc htop screen gcc g++ make git
+    sudo apt-get intall mc htop screen gcc g++ make gdb git valgrind
 ```
 
 ### Install VirtualBox Guest Additions
@@ -222,6 +222,19 @@ there is new a *folder* Projects and you can see it's content.
 #### Qt 4.8.6
 
 #### Qt 5.5.1
+Go to [Qt site][qtsite] and download online installer. Then in terminal:
+``` bash
+cd /path/to/downloaded/file
+sudo chmod u+x qt-unified-linux-*.run
+sudo ./qt-unified-linux-*.run
+```
+
+After that you'll see GUI window of Qt Installer. Log in to the qt.io (or create new user),
+choose path to install (I set default - /opt/Qt), choose Qt versions that you want to use
+and additional components. Then installer will download all components and that's all.
+
+Start QtCreator (find it's shortcut in OS menu), check the settings and try to compile
+some simple project to check that all is working.
 
 ### Install Boost
 
@@ -242,3 +255,4 @@ there is new a *folder* Projects and you can see it's content.
 [vb_site]: https://www.virtualbox.org/
 [vb_wiki]: https://en.wikipedia.org/wiki/VirtualBox
 [mount_shared_folder]: http://www.htpcbeginner.com/mount-virtualbox-shared-folder-on-ubuntu-linux/
+[qtsite]: http://www.qt.io/download-open-source/
