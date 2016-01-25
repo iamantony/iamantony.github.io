@@ -216,10 +216,30 @@ folder in your home folder:
 7. Log out and log in to the system (or just reboot) and check that in your home directory
 there is new a *folder* Projects and you can see it's content.
 
-### Install last version of gcc
-
 ### Install Qt and QtCreator
 #### Qt 4.8.6
+[How to install Qt 4.8.6 on Linux.][qt486inst]
+
+[How to configure Qt 4.8.6 on Linux.][qt486config]
+
+``` bash
+sudo apt-get intall sqlite3 postgresql pgadmin3 libpq-dev libcups2-dev libdbus-1-dev libx11-dev libxext-dev
+sudo mkdir /opt/qt-4.8.6
+cd /opt/qt-4.8.6
+sudo wget http://download.qt.io/archive/qt/4.8/4.8.6/qt-everywhere-opensource-src-4.8.6.tar.gz
+sudo tar xvf qt-everywhere-opensource-src-4.8.6.tar.gz
+cd qt-everywhere-opensource-src-4.8.6
+sudo ./configure -v -debug-and-release -opensource -shared -qt-zlib -qt-libpng -qt-libtiff -qt-libjpeg -dbus -cups -nomake examples -nomake demos
+```
+
+After configuration Qt will show you which modules it will support (SQLite, ALSA, zlib and so on).
+If you want to *enable* some module, try to install additional libraries and run again configure
+procedure. To build and install Qt 4.8.6 run this commands:
+
+``` bash
+sudo make
+sudo make install
+```
 
 #### Qt 5.5.1
 Go to [Qt site][qtsite] and download online installer. Then in terminal:
@@ -234,7 +254,7 @@ choose path to install (I set default - /opt/Qt), choose Qt versions that you wa
 and additional components. Then installer will download all components and that's all.
 
 Start QtCreator (find it's shortcut in OS menu), check the settings and try to compile
-some simple project to check that all is working.
+some simple project to check that all is working fine.
 
 ### Install Boost
 
@@ -250,9 +270,15 @@ some simple project to check that all is working.
 
 ### Install PyCharm
 
+### Install Java
+#### JVM
+
+#### JetBrains IDEA
 
 [stuff]: http://www.youtube.com/watch?v=MvgN5gCuLac
 [vb_site]: https://www.virtualbox.org/
 [vb_wiki]: https://en.wikipedia.org/wiki/VirtualBox
 [mount_shared_folder]: http://www.htpcbeginner.com/mount-virtualbox-shared-folder-on-ubuntu-linux/
 [qtsite]: http://www.qt.io/download-open-source/
+[qt486inst]: http://doc.qt.io/qt-4.8/install-x11.html
+[qt486config]: http://doc.qt.io/qt-4.8/configure-options.html
