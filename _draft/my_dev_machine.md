@@ -241,6 +241,8 @@ sudo make
 sudo make install
 ```
 
+Qt 4.8.6 will be installed into */usr/local/Trolltech/Qt-4.8.6/*
+
 #### Qt 5.5.1
 Go to [Qt site][qtsite] and download online installer. Then in terminal:
 ``` bash
@@ -253,8 +255,9 @@ After that you'll see GUI window of Qt Installer. Log in to the qt.io (or create
 choose path to install (I set default - /opt/Qt), choose Qt versions that you want to use
 and additional components. Then installer will download all components and that's all.
 
-Start QtCreator (find it's shortcut in OS menu), check the settings and try to compile
-some simple project to check that all is working fine.
+After installation of desired Qt versions, run QtCreator (find it's shortcut in OS menu),
+check the settings (don't forget to check that all installed Qt versions are available) and
+try to compile some simple project to check that all is working fine.
 
 ### Install Boost
 
