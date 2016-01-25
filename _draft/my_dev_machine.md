@@ -132,7 +132,7 @@ Update and upgrade your GOS and install basic software:
 ``` bash
     sudo apt-get update
     sudo apt-get upgrade
-    sudo apt-get intall mc synaptic top htop gcc g++ make git
+    sudo apt-get intall mc htop screen gcc g++ make git
 ```
 
 ### Install VirtualBox Guest Additions
