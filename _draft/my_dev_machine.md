@@ -212,6 +212,9 @@ folder in your home folder:
         cd /home/user_name
         sudo ln -s /media/sf_Projects Projects
     ```
+    
+7. Log out and log in to the system (or just reboot) and check that in your home directory
+there is new a *folder* Projects and you can see it's content.
 
 ### Install last version of gcc
 
