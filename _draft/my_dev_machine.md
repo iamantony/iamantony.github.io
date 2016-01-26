@@ -337,9 +337,21 @@ official icon. Try to launch it.
 I love IDE from JetBrains and I think PyCharm is the best free IDE for Python.
 You can download it [here][pycharmdownload] (choose Community Edition).
 
-### Install Java
-#### JVM
+Installation process of PyCharm is same as installation of Eclipse. Create
+new folder */opt/pycharm*, extract content of the downloaded archive to this
+folder and create desktop shortcut for PyCharm in *~/Desktop* folder. Text
+for shortcut:
+```text
+[Desktop Entry]
+Name=PyCharm CE 5.0.3
+Comment=Start PyCharm IDE
+TryExec=/opt/pycharm/pycharm-community-5.0.3/bin/pycharm.sh
+Exec=/opt/pycharm/pycharm-community-5.0.3/bin/pycharm.sh
+Icon=/opt/pycharm/pycharm-community-5.0.3/bin/pycharm.png
+Type=Application
+```
 
+### Install Java
 #### IntelliJ IDEA
 Another IDE from JetBrains. This time for Java.
 You can download it [here][ideadownload] (choose Community Edition and *.tar.gz* extension).
