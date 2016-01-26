@@ -337,7 +337,7 @@ official icon. Try to launch it.
 I love IDE from JetBrains and I think PyCharm is the best free IDE for Python.
 You can download it [here][pycharmdownload] (choose Community Edition).
 
-Installation process of PyCharm is same as installation of Eclipse. Create
+Installation process of PyCharm is the same as the installation of Eclipse. Create
 new folder */opt/pycharm*, extract content of the downloaded archive to this
 folder and create desktop shortcut for PyCharm in *~/Desktop* folder. Text
 for shortcut:
@@ -348,13 +348,28 @@ Comment=Start PyCharm IDE
 TryExec=/opt/pycharm/pycharm-community-5.0.3/bin/pycharm.sh
 Exec=/opt/pycharm/pycharm-community-5.0.3/bin/pycharm.sh
 Icon=/opt/pycharm/pycharm-community-5.0.3/bin/pycharm.png
+Encoding=UTF-8
 Type=Application
 ```
 
-### Install Java
-#### IntelliJ IDEA
+### Install IntelliJ IDEA
 Another IDE from JetBrains. This time for Java.
 You can download it [here][ideadownload] (choose Community Edition and *.tar.gz* extension).
+
+Installation process of IntelliJ IDEA is the same as the installation of PyCharm. Create
+new folder */opt/ideaic*, extract content of the downloaded archive to this
+folder and create desktop shortcut for IntelliJ IDEA in *~/Desktop* folder. Text
+for shortcut:
+```text
+[Desktop Entry]
+Name=IntelliJ IDEA CE
+Comment=Start IntelliJ IDEA IDE
+TryExec=/opt/ideaic/idea-IC-143.1821.5/bin/idea.sh
+Exec=/opt/ideaic/idea-IC-143.1821.5/bin/idea.sh
+Icon=/opt/ideaic/idea-IC-143.1821.5/bin/idea.png
+Encoding=UTF-8
+Type=Application
+```
 
 [stuff]: http://www.youtube.com/watch?v=MvgN5gCuLac
 [vb_site]: https://www.virtualbox.org/
