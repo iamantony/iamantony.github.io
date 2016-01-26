@@ -271,11 +271,11 @@ If you want to use latest version of Boost, go to [Boost SourceForge page][boost
 download latest stable release of Boost. Extract content of the archive to some folder
 (for example, */opt/boost_1.X*) and read manuals about how to use it (and build, if necessary):
 
-http://www.boost.org/doc/libs/1_60_0/more/getting_started/unix-variants.html#or-build-custom-binaries
+[Official Boost guide][boostguide].
 
-http://www.linuxfromscratch.org/blfs/view/svn/general/boost.html
+[Installation guide from Linux From Scratch][lfsguide].
 
-http://ubuntuforums.org/showthread.php?t=1180792
+[Installation guide from Ubuntu forums][ubuntuguide].
 
 ### Install Eclipse
 Eclipse is a very powerful IDE with many features, outdated UI and tricky project
@@ -352,6 +352,9 @@ You can download it [here][ideadownload] (choose Community Edition and *.tar.gz*
 [qt486inst]: http://doc.qt.io/qt-4.8/install-x11.html
 [qt486config]: http://doc.qt.io/qt-4.8/configure-options.html
 [boostdownload]: http://sourceforge.net/projects/boost/files/boost/
+[boostguide]: http://www.boost.org/doc/libs/1_60_0/more/getting_started/unix-variants.html
+[lfsguide]: http://www.linuxfromscratch.org/blfs/view/svn/general/boost.html
+[ubuntuguide]: http://ubuntuforums.org/showthread.php?t=1180792
 [eclipsedownload]:http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/mars/1/eclipse-cpp-mars-1-linux-gtk-x86_64.tar.gz
 [shortcutenablevideo]: https://www.youtube.com/watch?v=hy3r8H39-aU
 [pycharmdownload]: https://www.jetbrains.com/pycharm/download/#section=linux
