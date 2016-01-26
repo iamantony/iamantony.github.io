@@ -292,7 +292,43 @@ sudo cd eclipse
 sudo ./eclipse
 ```
 
-Last command start Eclipse IDE. How to create desktop shortcut:
+Last command will start Eclipse IDE. And that is all about Eclipse installation. We just
+extracted content of the archive to desired folder. Pretty easy. But there is one problem.
+In OS applications menu you will not find shortcut for Eclipse. You'll not find it anywhere,
+because it were not created. Let's fix it.
+
+#### Eclipse desktop shortcut
+Debian 8 use GNOME 3 as default desktop environment. And by default in GNOME 3 desktop
+shortcuts are disabled. So our first step - enable desktop shortcuts. In applications
+menu find Tweak Tool and run it. Got to the *Desktop* section and turn on slider
+*Icons on Desktop*. Here is the short video guide on [Youtube][shortcutenablevideo].
+
+Next, start *Terminal* and type:
+``` bash
+cd Desktop
+touch eclipse.desktop
+nano eclipse.desktop
+```
+
+We have created empty desktop shortcut with name *eclipse.desktop*. By last command
+we opened this file in *nano* text editor. Copy this text to the opened file:
+```text
+[Desktop Entry]
+Name=Eclipse CDT
+Comment=Start Eclipse IDE
+TryExec=/opt/eclipse/eclipse
+Exec=/opt/eclipse/eclipse
+Icon=/opt/eclipse/icon.xpm
+Type=Application
+```
+
+Save changes and exit *nano*. Make this desktop shortcut executable:
+``` bash
+chmod ugo+x eclipse.desktop
+```
+
+After that on your desktop there should be the new shortuct for Eclipse IDE with
+official icon. Try to launch it.
 
 #### Setup Eclipse
 (Add link to settings files)
@@ -317,5 +353,6 @@ You can download it [here][ideadownload] (choose Community Edition and *.tar.gz*
 [qt486config]: http://doc.qt.io/qt-4.8/configure-options.html
 [boostdownload]: http://sourceforge.net/projects/boost/files/boost/
 [eclipsedownload]:http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/mars/1/eclipse-cpp-mars-1-linux-gtk-x86_64.tar.gz
+[shortcutenablevideo]: https://www.youtube.com/watch?v=hy3r8H39-aU
 [pycharmdownload]: https://www.jetbrains.com/pycharm/download/#section=linux
 [ideadownload]: https://www.jetbrains.com/idea/#chooseYourEdition
