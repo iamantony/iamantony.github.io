@@ -3,7 +3,7 @@ exclude: ['nbproject', 'README.md', 'manifest.yml', 'rakefile.rb', 'Gemfile', 'G
 permalink:   /:title
 
 future: false
-markdown: rdiscount
+markdown: kramdown
 
 # Site
 iamantony:
