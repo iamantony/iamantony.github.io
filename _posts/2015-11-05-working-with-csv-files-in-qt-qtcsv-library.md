@@ -192,39 +192,17 @@ have to manually amend code and recompile your program.
 To eliminate this drawbacks (well, most of them) I wrote small
 library - **[qtcsv][6]**. It has class [**Reader**][7] that can read csv-files.
 It has class [**Writer**][12] that can write csv-files. Also it has several
-container classes for data that is going to be written to csv-file. Let's
-examine it in more detail.
+container classes for data that is going to be readed from or written to csv-file. 
+Let's examine it in more detail.
 
 *qtcsv* library have three container classes. [**AbstractData**][8]  is a pure
 abstract class that provide interface for a concrete container classes
-[**StringData**][9] and [**VariantData**][10]. It has only basics functions
+[**StringData**][9] and [**VariantData**][10]. It has only basic functions
 for adding new rows, getting rows values, clearing all data and checking if
-container is empty or not:
+container is empty or not.
 
-``` cpp
-class AbstractData
-{
-public:
-    explicit AbstractData() {}
-    virtual ~AbstractData() {}
-
-    // Add new empty row
-    virtual void addEmptyRow() = 0;
-    // Add new row with specified values (as strings)
-    virtual void addRow(const QStringList& values) = 0;
-    // Clear all data
-    virtual void clear() = 0;
-    // Check if there are any rows
-    virtual bool isEmpty() const = 0;
-    // Get number of rows
-    virtual int rowCount() const = 0;
-    // Get values of specified row as list of strings
-    virtual QStringList rowValues(const int& row) const = 0;
-};
-```
-
-As you can see, functions in *AbstractData* are only declared, but not
-defined. And class *AbstractData* don't know how "raw" data is actually
+Functions in *AbstractData* class are only declared, but not
+defined. *AbstractData* class don't know how "raw" data is actually
 saved in container class. It is up to user to define such things in concrete
 classes.
 
@@ -257,106 +235,26 @@ specific type to store information, *VariantData* won't help here because it
 don't know how to transform your specific type to string. It will be your work.
 
 So now we know how to store information in containers of *qtcsv* library. Next
-let's see how to write it to csv-file. Here is [*Writer*][12] class:
-
-``` cpp
-class Writer
-{
-public:
-    enum WriteMode
-    {
-        REWRITE = 0,
-        APPEND
-    };
-
-    // Write data to csv-file
-    static bool write(const QString& filePath,
-                      const AbstractData& data,
-                      const QString& separator = ",",
-                      const WriteMode& mode = REWRITE,
-                      const QStringList& header = QStringList(),
-                      const QStringList& footer = QStringList(),
-                      QTextCodec* codec = QTextCodec::codecForLocale());
-};
-```
+let's see how to write it to csv-file using [*Writer*][12] class. Refer to 
+[Writer section in Readme file of qtcsv project][readme-writer].
 
 *Writer* has only one function - *write()*. This function have many arguments,
-but most of them have default values. There are only two arguments that you must
-to specify:
-
-  - *filePath* -  this is a string with absolute path to csv-file. Examples of absolute path:
-    - in Linux: /home/user/file.csv
-    - in Windows: C:\\tmp\file.csv
-
-    There is one more requirement to *filePath*: it must ends with ".csv".
-
-  - *data* - this is a container object, derived from *AbstractData*.
-
-Let's move on to additional arguments:
-
-  - *separator* - it is a symbol that separates elements in a row in csv file;
-  - *mode* - this is write flag. If mode is set to WriteMode::APPEND
-  and csv-file exist, then new information will be appended to the end of the
-  file. If it set to WriteMode::REWRITE and csv-file exist, then all
-  information will be written to temporary csv-file and after that destination
-  csv-file will be replaced by this temporary file;
-  - *header* - strings that will be written at the beginning of the file,
-  separated with defined separator;
-  - *footer* -  strings that will be written at the end of the file, separated
-  with defined separator;
-  - *codec* - pointer to the codec object that will be used to write data to
-  the file. Use this argument if you want to save csv-file in specific coding
-  (like Windows-1251).
-
-That amount of arguments is explained by desire to provide the most flexible
-way of working with csv-files. You can change parameters on the fly, no
-recompilation (kind of my solution to the third drawback).
+but most of them have default values. That amount of arguments is explained by 
+desire to provide the most flexible way of working with csv-files. You can 
+change parameters on the fly, no recompilation (kind of my solution to the 
+third drawback).
 
 *Writer* sends data to file by chunks. It collects several rows from original
 data, transform it to string (if necessary), adds separators, new line symbols
-and send to *QTextStream* which is then send it to *QFile*. And then cycle repeats
+and send to *QTextStream* which is then send it to *QFile*. This cycle repeats
 till there is no data left. This approach is very useful when you have big
 amount of data. *Writer* will not take much memory so your program will run
 smoothly. Also *Writer* provides solution to the 2.2 drawback. It will convert
 your data to strings only when it necessary.
 
 Finally we get to the [*Reader*][7]. The purpose of this class is obvious - reading
-content of the csv-file. Here is its interface:
-
-``` cpp
-class Reader
-{
-public:
-    // Read csv-file and save it's data as strings to QList<QStringList>
-    static QList<QStringList> readToList(const QString& filePath,
-                        const QString& separator = ",",
-                        QTextCodec* codec = QTextCodec::codecForLocale());
-
-    // Read csv-file and save it's data to AbstractData-based container
-    // class
-    static bool readToData(const QString& filePath,
-                        AbstractData& data,
-                        const QString& separator = ",",
-                        QTextCodec* codec = QTextCodec::codecForLocale());
-};
-```
-
-*Reader* have two functions. The first - *readToList()* - read the csv-file
-into list of strings. Pretty straightforward, just like functions *ReadCSV()*
-in the beginning of this post. The second function - *readToData()* - is a little
-more interesting. It will read csv-file the same way as the first function,
-but it will save read data into *AbstractData*-based container using function 
-*addRow(QStringList)*. You can create your own *AbstractData*-based container and
-implement this function such a way that it will automatically interpret or
-convert this strings the way you want it.
-
-Both of the functions of the *Reader* class have two additional arguments:
-
-  - *separator* - it is a symbol that separates elements in a row in csv file;
-  - *codec* - pointer to the codec object that will be used to read data from
-  the file. Use this argument if you want to read csv-file that was saved in
-  specific coding (like KOI8-R).
-
+content of the csv-file. Refer to 
+[Reader section in Readme file of qtcsv project][readme-reader]. 
 Unfortunately *Reader* don't provide solution to drawback 2.1. It reads the
 whole file at once and saves all its content to container.
 
@@ -382,3 +280,5 @@ https://github.com/iamantony/qtcsv-example.git
 [10]: https://github.com/iamantony/qtcsv/blob/master/src/include/variantdata.h
 [11]: http://doc.qt.io/qt-5/qvariant.html
 [12]: https://github.com/iamantony/qtcsv/blob/master/src/include/writer.h
+[readme-writer]: https://github.com/iamantony/qtcsv#writer
+[readme-reader]: https://github.com/iamantony/qtcsv#reader
