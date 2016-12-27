@@ -4,14 +4,14 @@ layout: default
 ---
 
 <p>
-I'm a developer and aspirant at the 
-<a target="_blank" href="http://urfu.ru/en/">Ural Federal University</a>
+Antony Cherepanov. Human. Developer.
 </p>
 
 <p>
-Most of my live I lived in Pervouralsk, then I went to the University and moved 
-to the Yekaterinburg. In 2014 my girlfriend said to my that enough is enough - 
-it's too cold for her on Ural, so we moved to warmer Moscow.
+Most of my live I lived in Pervouralsk (Russia). Here I went to the kindergarden 
+and school. In 2007 I went to the University and moved to the Yekaterinburg. 
+In 2014 my girlfriend said to me that enough is enough - 
+it's too cold for her on Ural - so we moved to warmer Moscow.
 </p>
 
 <p>
@@ -46,8 +46,8 @@ Qt framework, UNIX basics, programming techniques and so on.
 <p>
 Since that I changed several jobs. Worked as Game Developer (it was fun!), 
 frontend/backend developer (unfortunately not too long and still have weak 
-knowledge of web development). I started to learn Python (love it!) and became 
-interested in image processing.
+knowledge of web development). I started to learn Python (love it!), Java, 
+Android and became interested in image processing.
 </p>
 
 <p>
@@ -57,14 +57,9 @@ administration... It's not always easy, but always fun.
 </p>
 
 <p>
-Well, that's it. Thanks for reading my blog!
+Well, that's it. Thanks for reading!
 </p>
 
 <p>
 Feel free to contact me via email, twitter or something else :-)
-</p>
-
-<p>
-P.S.: I'm not good at English so if you will see any mistakes it would be 
-great if you would help me to correct them!
 </p>
