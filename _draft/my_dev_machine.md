@@ -11,12 +11,12 @@ I would assume that as a Host OS we use Linux (Ubuntu) and as a VDOS - also Linu
 2. Download VirtualBox Extension Pack.
 3. Install VirtualBox:
 
-``` bash
-cd /path/with/virtualbox/install/file
+   ``` bash
+   cd /path/with/virtualbox/install/file
 
-# example VirtualBox .deb file: virtualbox-5.1_5.1.12-112440-Ubuntu-wily_amd64.deb
-sudo dpkg -i virtualbox-5.1_5.1.12-112440-Ubuntu-wily_amd64.deb
-```
+   # example VirtualBox .deb file: virtualbox-5.1_5.1.12-112440-Ubuntu-wily_amd64.deb
+   sudo dpkg -i virtualbox-5.1_5.1.12-112440-Ubuntu-wily_amd64.deb
+   ```
 
 4. Run VirtualBox.
 5. Install VirtualBox Extension Pack. Open Menu -> File -> Preferences -> Extensions. Press "Add new package" button. In opened window choose VirtualBox Extension Pack file.
@@ -44,8 +44,15 @@ As a result of this steps you will get empty VDOS with name "UbuntuVDOS". Choose
 3. Choose Storage. In "Storage tree" choose virtual optical drive (Controller: IDE -> Empty). In "Attributes" section press button with CD and choose Ubuntu .iso file that you previously downloaded.
 4. Press OK in "Settings" window.
 
+## Install Ubuntu on virtual machine
 
-## Install VOS
+Now we made all preparations for installation of Ubuntu on virtual machine. Choose "UbuntuVDOS" in VirtualBox and press "Start" button. Virtual machine will start to load and soon you will see Ubuntu installation window.
+
+1. Choose "Install Ubuntu".
+2. Check "Download packages..." and "Install third-party software...".
+3. Choose "Erase disk and install Ubuntu".
+4. Set time zone, landguage, user name and password.
+5. After succeed installation restart VDOS.
 
 ## Install software
 After successful installation of VOS, let's fill it up with usefull software. At the first step
