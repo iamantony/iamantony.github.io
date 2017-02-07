@@ -142,49 +142,6 @@ sudo apt-get install qtcreator qtcreator-data \
 qtcreator-dbg qtcreator-dev qtcreator-doc
 ```
 
-
-#### Qt 4.8.6
-[How to install Qt 4.8.6 on Linux.][qt486inst]
-
-[How to configure Qt 4.8.6 on Linux.][qt486config]
-
-```bash
-
-sudo mkdir /opt/qt-4.8.6
-cd /opt/qt-4.8.6
-sudo wget http://download.qt.io/archive/qt/4.8/4.8.6/qt-everywhere-opensource-src-4.8.6.tar.gz
-sudo tar xvf qt-everywhere-opensource-src-4.8.6.tar.gz
-cd qt-everywhere-opensource-src-4.8.6
-sudo ./configure -v -debug -opensource -shared -qt-zlib -qt-libpng -qt-libtiff -qt-libjpeg -dbus -cups -nomake examples -nomake demos
-```
-
-After configuration Qt will show you which modules it will support (SQLite, ALSA, zlib and so on).
-If you want to *enable* some module, try to install additional libraries and run again configure
-procedure. To build and install Qt 4.8.6 run this commands:
-
-``` bash
-sudo make
-sudo make install
-```
-
-Qt 4.8.6 will be installed into */usr/local/Trolltech/Qt-4.8.6/*
-
-#### Qt 5.5.1
-Go to [Qt site][qtsite] and download online installer. Then in terminal:
-``` bash
-cd /path/to/downloaded/file
-sudo chmod u+x qt-unified-linux-*.run
-sudo ./qt-unified-linux-*.run
-```
-
-After that you'll see GUI window of Qt Installer. Log in to the qt.io (or create new user),
-choose path to install (I set default - /opt/Qt), choose Qt versions that you want to use
-and additional components. Then installer will download all components and that's all.
-
-After installation of desired Qt versions, run QtCreator (find it's shortcut in OS menu),
-check the settings (don't forget to check that all installed Qt versions are available) and
-try to compile some simple project to check that all is working fine.
-
 ### Install Boost
 The simpliest way to get Boost is to install it from Debian repository. In Debian 8 there is
 available Boost 1.55. It's quite old version of library (11.2013), but stable and sufficient
@@ -296,6 +253,8 @@ Icon=/opt/ideaic/idea-IC-143.1821.5/bin/idea.png
 Encoding=UTF-8
 Type=Application
 ```
+
+### Install Google Chrome
 
 [vb_site]: https://www.virtualbox.org/
 [vb_download]: https://www.virtualbox.org/wiki/Downloads
