@@ -112,15 +112,44 @@ Let's share "Projects" folder with VOS (with the help of [this article][mount_sh
     ``` bash
         sudo ln -s /media/sf_Projects /home/user_name/Projects
     ```
+    
+### Install basic packages
+    
+``` bash
+sudo apt-get install mc htop synaptic screen gcc g++ \
+make cmake gdb git subversion valgrind ubuntu-sdk \
+icu-doc kdelibs5-data
+```
 
 ### Install Qt and QtCreator
+
+``` bash
+sudo apt-get install qt4-bin-dbg qt4-default qt4-designer \
+qt4-dev-tools qt4-doc qt4-doc-html qt4-linguist-tools \
+qt4-qmake qt4-qmlviewer qt4-qtconfig lighttpd firebird-dev \
+libmysqlclient-dev libpq-dev libsqlite0-dev libsqlite3-dev \
+unixodbc-dev libxcb-doc libxext-doc qt-assistant-compat \
+libqt4-sql-mysql libqt4-sql-psql libqt4-sql-odbc
+
+sudo apt-get install qt5-default qt5-doc qt5-doc-html \
+qt5-image-formats-plugins qt5-qmake \
+qt5-qmake-arm-linux-gnueabihf qt5-style-plugins \
+qttools5-dev-tools qtbase5-dbg qtbase5-dev-tools-dbg \
+qtbase5-private-dev libqt5sql5-mysql libqt5sql5-psql \
+libqt5sql5-odbc libqt5svg5-dev
+
+sudo apt-get install qtcreator qtcreator-data \
+qtcreator-dbg qtcreator-dev qtcreator-doc
+```
+
+
 #### Qt 4.8.6
 [How to install Qt 4.8.6 on Linux.][qt486inst]
 
 [How to configure Qt 4.8.6 on Linux.][qt486config]
 
 ```bash
-sudo apt-get intall mc htop screen gcc g++ make gdb git valgrind sqlite3 postgresql pgadmin3 libpq-dev libcups2-dev libdbus-1-dev libx11-dev libxext-dev libicu-dev
+
 sudo mkdir /opt/qt-4.8.6
 cd /opt/qt-4.8.6
 sudo wget http://download.qt.io/archive/qt/4.8/4.8.6/qt-everywhere-opensource-src-4.8.6.tar.gz
