@@ -5,6 +5,7 @@ Steps to prepare Virtual Developer OS (VDOS).
 I would assume that as a Host OS we use Linux (Ubuntu) and as a VDOS - also Linux (Ubuntu).
 
 ## Install VirtualBox
+
 [VirtualBox][vb_site] - is a hypervisor for x86 computers from Oracle Corporation. Main advantage - it can work on Windows, Linux and other OSes.
 
 1. [Download][vb_download] latest VirtualBox for your OS.
@@ -22,6 +23,7 @@ I would assume that as a Host OS we use Linux (Ubuntu) and as a VDOS - also Linu
 5. Install VirtualBox Extension Pack. Open Menu -> File -> Preferences -> Extensions. Press "Add new package" button. In opened window choose VirtualBox Extension Pack file.
 
 ## Download OS image
+
 As a VDOS I use [Ubuntu][ubuntu-site]. I would recommend to use latest Desktop LTS release. You can download it [here][ubuntu-download].
 
 ## Create virtual machine in VirtualBox
@@ -55,111 +57,61 @@ Now we made all preparations for installation of Ubuntu on virtual machine. Choo
 5. After succeed installation restart VDOS.
 
 ## Install software
-After successful installation of VOS, let's fill it up with usefull software. At the first step
-I recommend to do basic stuff.
 
-### Basic
-First of all let's install *sudo* package:
-``` bash
-    # switch to root user
-    su
-    # enter root password
-    
-    apt-get install sudo
-```
+After successful installation of VOS, let's fill it up with usefull software. 
 
-Then we should enable *sudo* for our main user:
-``` bash
-    usermod -aG sudo user_name
-```
+### Update packages
 
-Update and upgrade your GOS and install basic software:
+Open Terminal and type this commands:
+
 ``` bash
-    sudo apt-get update
-    sudo apt-get upgrade
-    sudo apt-get intall mc htop screen gcc g++ make gdb git valgrind
+sudo apt-get update
+sudo apt-get upgrade
 ```
 
 ### Install VirtualBox Guest Additions
-Why we should install Guest Additions?
 
-Let's install additional packages:
+With VirtualBox Guest Additions VOS will work smoothly. Also this package will enable:
+- shared clipboard
+- drag-and-drop
+- shared folders
+- other useful stuff
+
+First of all, let's install additional packages:
+
 ``` bash
-    apt-get intall linux-headers-$(uname -r)
+sudo apt-get intall linux-headers-$(uname -r)
 ```
 
-After this commands I recommend to reboot your GOS to "apply changes" in OS.
+I recommend to reboot your VOS after this command so changes in OS could be applied.
 
-After GOS reboot in VirtualBox menu choose Devices -> Insert Guest Additions CD image... (don't forget
-to check if virtual CD-drive of your Virtual OS is empty). VirtualBox will try to
-mount its "Guest Additions CD" into GOS CD-drive. 
+After VOS reboot check that virtual CD-drive of your VOS is empty. Then choose in VirtualBox menu: Devices -> Insert Guest Additions CD image. VirtualBox will try to mount its "Guest Additions CD" into VOS CD-drive. After that you will see a small window that will offer you to run installation script. Press "Run" button.
 
-Find out where "Guest Additions CD" was mounted. I recommend to check this folders:
-``` txt
-/media/cdrom0
-/home/user_name/media
-/mnt
-```
+It is very likely that installation will go smoothly. If during installation something went wrong, read program output - you will get some hints what you need to do (for example, install missed packages).
 
-I found CD image mounted to "/media/cdrom0". It should contain this files:
+After installation eject installation CD from virtual CD-drive and reboot VOS.
 
-![List of file in Guest Additions CD]({{ site.url }}/images/my_dev_machine/files_in_guest_additions_cd.png)
+### Set up shared folders
 
-Run this commands to install VirtualBox Guest Additions:
-``` bash
-mkdir vbox
-cp -r /media/cdrom0/* ~/vbox
-cd ./vbox
-sudo sh ./VBoxLinuxAdditions.run
-```
+One of the advantages of the VirtualBox are shared folders. It means that you can set some of the folders of your host OS to be shared with VOS. You can share folders in read-only mode or give full access to them. This is very useful feature. For example, in host OS you can create folder with your projects and then share it with VOS. You would have only one copy of your projects and will be able to work with them in both OS-s.
 
-It is very likely that installation will go smoothly and you will see something like this:
+Let's share "Projects" folder with VOS (with the help of [this article][mount_shared_folder]):
 
-![Installation of Guest Additions]({{ site.url }}/images/my_dev_machine/installation_of_guest_additions.png)
-
-If during installation something went wrong, in program output you will get some hints what you need to do
-(for example, install missed packages).
-
-After successful installation of VirtualBox Guest Additions reboot your GOS. If after reboot of GOS its screen
-size will be adapted to the size of VirtualBox window, then Guest Additions work properly.
-
-Don't forget to remove temporary directory *vbox* from your home directory:
-``` bash
-sudo rm -r ~/vbox
-```
-
-#### Set up shared folders
-One of the advantages of the VirtualBox are shared folders. In HOS you can set some folders to be shared
-so in GOS you will see them. You can share folders in read-only mode or give full access to them.
-This is very useful feature. With it I can have only one folder with my projects. I create such folder
-in HOS and share it with GOS so I can work with my projects files in both OS-s.
-
-Let's share Projects folder with GOS (with the help of [this article][mount_shared_folder]):
-
-1. In VirtualBox Manager open Settings of your GOS.
-2. In "Shared folders" section add shared folder "Projects" (don't forget to set
-"Auto-mount" option).
-
-![Add Shared folder]({{ site.url }}/images/my_dev_machine/add_shared_folder.png)
-
-3. Start your GOS and open Terminal.
+1. Turn off your VOS.
+2. In VirtualBox Manager open Settings of your VOS.
+3. In "Shared folders" section add shared folder "Projects" (don't forget to set "Auto-mount" option).
+4. Start your VOS and open Terminal.
 4. Add your user to group "vboxsf" to see content of the shared folders:
     ``` bash
         sudo usermod -aG vboxsf user_name
     ```
     
-5. Shared folder will be automatically be mounted to **/media/user_name/sf_Projects** or
-**/media/sf_Projects**. Check that you can see content of shared folder.
-
-6. For easy access / convenience, you may create a symbolic link to the mounted shared
-folder in your home folder:
+5. Log out from the VOS and log in.
+6. Shared folder will be automatically be mounted to **/media/user_name/sf_Projects** or **/media/sf_Projects**. Check that you can see content of shared folder.
+7. For easy access / convenience, you may create a symbolic link to the mounted shared folder in your home folder:
     ``` bash
-        cd /home/user_name
-        sudo ln -s /media/sf_Projects Projects
+        sudo ln -s /media/sf_Projects /home/user_name/Projects
     ```
-    
-7. Log out and log in to the system (or just reboot) and check that in your home directory
-there is new a *folder* Projects and you can see it's content.
 
 ### Install Qt and QtCreator
 #### Qt 4.8.6
@@ -167,8 +119,8 @@ there is new a *folder* Projects and you can see it's content.
 
 [How to configure Qt 4.8.6 on Linux.][qt486config]
 
-``` bash
-sudo apt-get intall sqlite3 postgresql pgadmin3 libpq-dev libcups2-dev libdbus-1-dev libx11-dev libxext-dev libicu-dev
+```bash
+sudo apt-get intall mc htop screen gcc g++ make gdb git valgrind sqlite3 postgresql pgadmin3 libpq-dev libcups2-dev libdbus-1-dev libx11-dev libxext-dev libicu-dev
 sudo mkdir /opt/qt-4.8.6
 cd /opt/qt-4.8.6
 sudo wget http://download.qt.io/archive/qt/4.8/4.8.6/qt-everywhere-opensource-src-4.8.6.tar.gz
