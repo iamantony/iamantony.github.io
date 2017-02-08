@@ -143,132 +143,88 @@ qtcreator-dbg qtcreator-dev qtcreator-doc
 ```
 
 ### Install Boost
-The simpliest way to get Boost is to install it from Debian repository. In Debian 8 there is
-available Boost 1.55. It's quite old version of library (11.2013), but stable and sufficient
-for most users.
+
+The simpliest way to get Boost is to install it from Ubuntu repository. Current available version - 1.58. It's quite old (04.2015), but stable and sufficient for most users.
+
 ``` bash
 sudo apt-get install libboost-all-dev
 ```
 
-If you want to use latest version of Boost, go to [Boost SourceForge page][boostdownload] and
-download latest stable release of Boost. Extract content of the archive to some folder
-(for example, */opt/boost_1.X*) and read manuals about how to use it (and build, if necessary):
-
-[Official Boost guide][boostguide].
-
-[Installation guide from Linux From Scratch][lfsguide].
-
-[Installation guide from Ubuntu forums][ubuntuguide].
-
-### Install Eclipse
-Eclipse is a very powerful IDE with many features, outdated UI and tricky project
-configuration process. I usually use it for plain C++ projects. Try it. Maybe you'll
-like it. You can download installer archive [here][eclipsedownload].
-
-``` bash
-sudo apt-get install openjdk-7-jdk libcanberra-gtk-module
-sudo mkdir /opt/eclipse
-cd /opt/eclipse
-sudo cp /path/to/eclipse-*.tar.gz /opt/eclipse
-sudo tar xvf eclipse-*.tar.gz
-sudo cd eclipse
-sudo ./eclipse
-```
-
-Last command will start Eclipse IDE. And that is all about Eclipse installation. We just
-extracted content of the archive to desired folder. Pretty easy. But there is one problem.
-In OS applications menu you will not find shortcut for Eclipse. You'll not find it anywhere,
-because it were not created. Let's fix it.
-
-#### Eclipse desktop shortcut
-Debian 8 use GNOME 3 as default desktop environment. And by default in GNOME 3 desktop
-shortcuts are disabled. So our first step - enable desktop shortcuts. In applications
-menu find Tweak Tool and run it. Got to the *Desktop* section and turn on slider
-*Icons on Desktop*. Here is the short video guide on [Youtube][shortcutenablevideo].
-
-Next, start *Terminal* and type:
-``` bash
-cd Desktop
-touch eclipse.desktop
-nano eclipse.desktop
-```
-
-We have created empty desktop shortcut with name *eclipse.desktop*. By last command
-we opened this file in *nano* text editor. Copy this text to the opened file:
-```text
-[Desktop Entry]
-Name=Eclipse CDT
-Comment=Start Eclipse IDE
-TryExec=/opt/eclipse/eclipse
-Exec=/opt/eclipse/eclipse
-Icon=/opt/eclipse/icon.xpm
-Type=Application
-```
-
-Save changes and exit *nano*. Make this desktop shortcut executable:
-``` bash
-chmod ugo+x eclipse.desktop
-```
-
-After that on your desktop there should be the new shortuct for Eclipse IDE with
-official icon. Try to launch it.
-
-#### Setup Eclipse
-(Add link to settings files)
+If you want to use latest version of Boost, go to [Boost SourceForge page][boostdownload] and download latest stable release of Boost. Extract content of the archive to */opt* folder (for example, */opt/boost_X.X* where *X.X* is a version number) and read manuals about how to use it (and build, if necessary):
+- [Official Boost guide][boostguide]
+- [Installation guide from Linux From Scratch][lfsguide]
+- [Installation guide from Ubuntu forums][ubuntuguide]
 
 ### Install PyCharm
-I love IDE from JetBrains and I think PyCharm is the best free IDE for Python.
-You can download it [here][pycharmdownload] (choose Community Edition).
 
-Installation process of PyCharm is the same as the installation of Eclipse. Create
-new folder */opt/pycharm*, extract content of the downloaded archive to this
-folder and create desktop shortcut for PyCharm in *~/Desktop* folder. Text
-for shortcut:
-```text
-[Desktop Entry]
-Name=PyCharm CE 5.0.3
-Comment=Start PyCharm IDE
-TryExec=/opt/pycharm/pycharm-community-5.0.3/bin/pycharm.sh
-Exec=/opt/pycharm/pycharm-community-5.0.3/bin/pycharm.sh
-Icon=/opt/pycharm/pycharm-community-5.0.3/bin/pycharm.png
-Encoding=UTF-8
-Type=Application
+I love IDE from JetBrains and I think PyCharm is the best free IDE for Python. You can download it [here][pycharmdownload] (choose Community Edition). How to install:
+
+``` bash
+cd /path/with/pycharm/archive
+
+# Extract archive
+tar -zxvf pycharm-archive.tar.gz
+
+# As a result we will get pychram folder. Let's move it into /opt 
+sudo mv ./pycharm /opt
+
+# Run PyCharm. You will see set up window. Don't forget to choose option "Create Desktop shortcut for all users"
+sudo /opt/pycharm/bin/pycharm.sh
+
+# Add to $PATH variable path to PyCharm */bin* folder:
+# PATH="$PATH:/opt/pychram/bin"
+nano ~/.profile
+
+# Log out and log in into OS. In terminal try to execute:
+pycharm.sh
 ```
 
 ### Install IntelliJ IDEA
-Another IDE from JetBrains. This time for Java.
-You can download it [here][ideadownload] (choose Community Edition and *.tar.gz* extension).
 
-Installation process of IntelliJ IDEA is the same as the installation of PyCharm. Create
-new folder */opt/ideaic*, extract content of the downloaded archive to this
-folder and create desktop shortcut for IntelliJ IDEA in *~/Desktop* folder. Text
-for shortcut:
-```text
-[Desktop Entry]
-Name=IntelliJ IDEA CE
-Comment=Start IntelliJ IDEA IDE
-TryExec=/opt/ideaic/idea-IC-143.1821.5/bin/idea.sh
-Exec=/opt/ideaic/idea-IC-143.1821.5/bin/idea.sh
-Icon=/opt/ideaic/idea-IC-143.1821.5/bin/idea.png
-Encoding=UTF-8
-Type=Application
+Another IDE from JetBrains. This time for Java. You can download it [here][ideadownload] (choose Community Edition and *.tar.gz* extension).
+
+Installation process of IntelliJ IDEA is the same as the installation of PyCharm: 
+
+``` bash
+cd /path/with/idea/archive
+
+# Extract archive
+tar -zxvf idea-archive.tar.gz
+
+# As a result we will get Idea folder. Let's move it into /opt 
+sudo mv ./idea /opt
+
+# Run Idea. You will see set up window. Don't forget to choose option "Create Desktop shortcut for all users"
+sudo /opt/idea/bin/idea.sh
+
+# Add to $PATH variable path to PyCharm */bin* folder:
+# PATH="$PATH:/opt/idea/bin"
+nano ~/.profile
+
+# Log out and log in into OS. In terminal try to execute:
+idea.sh
 ```
 
 ### Install Google Chrome
+
+Download Google Chrome package from [here][chrome-download].
+
+``` bash
+sudo apt-get install libindicator7 libappindicator1
+
+cd /path/with/chrome
+sudo dpkg -i google-sudochrome.deb
+```
 
 [vb_site]: https://www.virtualbox.org/
 [vb_download]: https://www.virtualbox.org/wiki/Downloads
 [ubuntu-site]: https://www.ubuntu.com/
 [ubuntu-download]: https://www.ubuntu.com/download/desktop
 [mount_shared_folder]: http://www.htpcbeginner.com/mount-virtualbox-shared-folder-on-ubuntu-linux/
-[qtsite]: http://www.qt.io/download-open-source/
-[qt486inst]: http://doc.qt.io/qt-4.8/install-x11.html
-[qt486config]: http://doc.qt.io/qt-4.8/configure-options.html
 [boostdownload]: http://sourceforge.net/projects/boost/files/boost/
 [boostguide]: http://www.boost.org/doc/libs/1_60_0/more/getting_started/unix-variants.html
 [lfsguide]: http://www.linuxfromscratch.org/blfs/view/svn/general/boost.html
 [ubuntuguide]: http://ubuntuforums.org/showthread.php?t=1180792
-[eclipsedownload]:http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/mars/1/eclipse-cpp-mars-1-linux-gtk-x86_64.tar.gz
-[shortcutenablevideo]: https://www.youtube.com/watch?v=hy3r8H39-aU
 [pycharmdownload]: https://www.jetbrains.com/pycharm/download/#section=linux
 [ideadownload]: https://www.jetbrains.com/idea/#chooseYourEdition
+[chrome-download]: https://www.google.ru/chrome/browser/desktop/
