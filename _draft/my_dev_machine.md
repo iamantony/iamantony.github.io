@@ -1,8 +1,23 @@
 # My Dev Machine
 
-Steps to prepare Virtual Developer OS (VDOS).
+Every developer has set of software and tools that he uses for work or hobby. This set could 
+contain favorite IDEs, packages, libraries and useful tools. Over time, this list of software grows. At some point the set gets on so large that developer can not hold all of it in his memory. That is how "developer memory dump" appears - text file with list of necessary software.
 
-I would assume that as a Host OS we use Linux (Ubuntu) and as a VDOS - also Linux (Ubuntu).
+Time goes by. Developer gets new work, upgrade his (or her) PC... After several iterations of installation of tons of software on clean OS, developer asks himself - how he can optimize this routine? One of the answers is to use virtual machine. Main idea is simple: you only once set up virtual machine with OS and all required software and then use it on (almost) every computer because of its portability. Such virtual machine I call Virtual Developer OS (VDOS).
+
+Advantages:
+- set up all necessary software only once
+- portability - image of virtual machine could be saved on flash drive
+- do not depend on virtual OS reliability - with snapshots of virtual machine you could revert any dangerous changes
+- do not depend on host OS reliability - all necessary/important software installed on virtual machine
+
+Disadvantages:
+- virtual machine could be run only on processors that support virtualization technology
+- virtual machine could not use all power (CPU, RAM) of computer
+
+In this post I will describe creation process of VDOS. In the first part I will tell how to create virtual machine using VirtualBox. The second part will contain setup commands that I use when create my own VDOS.
+
+I would assume that host OS and virtual OS are Linux (Ubuntu).
 
 ## Install VirtualBox
 
