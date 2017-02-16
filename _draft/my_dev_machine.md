@@ -3,9 +3,9 @@
 Every developer has set of software and tools that he uses for work or hobby. This set could 
 contain favorite IDEs, packages, libraries and useful tools. Over time, this list of software grows. At some point the set gets on so large that developer can not hold all of it in his memory. That is how "developer memory dump" appears - text file with list of necessary software.
 
-Time goes by. Developer gets new work, upgrade his (or her) PC... After several iterations of installation of tons of software on clean OS, developer asks himself - how he can optimize this routine? One of the answers is to use virtual machine. Main idea is simple: you only once set up virtual machine with OS and all required software and then use it on (almost) every computer because of its portability. Such virtual machine I call Virtual Developer OS (VDOS).
+Time goes by. Developer gets new work, upgrade his (or her) PC... After several iterations of installation of tons of software on clean OS, developer asks himself - how he can optimize this routine? One of the answers is to use virtual machine. Main idea is simple: you set up virtual machine with OS and all required software only once and then use it on (almost) every computer. I call such virtual machine *Virtual Developer OS (VDOS)*.
 
-Advantages:
+Advantages of VDOS:
 - set up all necessary software only once
 - portability - image of virtual machine could be saved on flash drive
 - do not depend on virtual OS reliability - with snapshots of virtual machine you could revert any dangerous changes
@@ -14,66 +14,66 @@ Advantages:
 Disadvantages:
 - virtual machine could be run only on processors that support virtualization technology
 - virtual machine could not use all power (CPU, RAM) of computer
+- ...
 
-In this post I will describe creation process of VDOS. In the first part I will tell how to create virtual machine using VirtualBox. The second part will contain setup commands that I use when create my own VDOS.
+In this post I will describe how to create VDOS. In the first part you will learn how to create virtual machine using VirtualBox. The second part will contain setup commands that I use when create my own VDOS.
 
-I would assume that host OS and virtual OS are Linux (Ubuntu).
+I assume that host OS and virtual OS are Linux (Ubuntu).
 
-## Install VirtualBox
+## VDOS creation
 
-[VirtualBox][vb_site] - is a hypervisor for x86 computers from Oracle Corporation. Main advantage - it can work on Windows, Linux and other OSes.
+### Install VirtualBox
 
-1. [Download][vb_download] latest VirtualBox for your OS.
-2. Download VirtualBox Extension Pack.
-3. Install VirtualBox:
+[VirtualBox][vb_site] - is a hypervisor for PC from Oracle Corporation. Main advantage - it can work on Windows, Linux and other OSes.
+
+1. [Download][vb_download] latest VirtualBox for your OS and VirtualBox Extension Pack.
+2. Install VirtualBox:
 
    ``` bash
    cd /path/with/virtualbox/install/file
-
-   # example VirtualBox .deb file: virtualbox-5.1_5.1.12-112440-Ubuntu-wily_amd64.deb
-   sudo dpkg -i virtualbox-5.1_5.1.12-112440-Ubuntu-wily_amd64.deb
+   sudo dpkg -i virtualbox.deb
    ```
 
-4. Run VirtualBox.
-5. Install VirtualBox Extension Pack. Open Menu -> File -> Preferences -> Extensions. Press "Add new package" button. In opened window choose VirtualBox Extension Pack file.
+3. Run VirtualBox.
+4. Install VirtualBox Extension Pack. Open Menu -> File -> Preferences -> Extensions. Press "Add new package" button. In opened window choose VirtualBox Extension Pack file.
 
-## Download OS image
+### Download OS image
 
-As a VDOS I use [Ubuntu][ubuntu-site]. I would recommend to use latest Desktop LTS release. You can download it [here][ubuntu-download].
+As a VDOS we will use [Ubuntu][ubuntu-site]. I would recommend to use latest Desktop LTS release. You can download it [here][ubuntu-download].
 
-## Create virtual machine in VirtualBox
+### Create virtual machine in VirtualBox
 
 1. Run VirtualBox.
 2. Press "New" button.
-3. Name and operating system. Set name "UbuntuVDOS", type - Linux, version - Ubuntu (64-bit).
-4. Memory size. Set memory size - 2048 Mb.
-5. Hard disk. Choose "Create a virtual hard disk now".
-6. Hard disk file type. Choose VDI.
-7. Storage on physical hard disk. Choose "Dynamically allocated".
-8. File location and size. Choose path where VDOS image will be placed. Set size of the virtual hard disk - 20 Gb.
+3. *Name and operating system*: set name "UbuntuVDOS", type - Linux, version - Ubuntu (64-bit).
+4. *Memory size*: set memory size - 2048 Mb.
+5. *Hard disk*: choose "Create a virtual hard disk now".
+6. *Hard disk file type*: choose VDI.
+7. *Storage on physical hard disk*: choose "Dynamically allocated".
+8. *File location and size*: choose path where VDOS image will be placed. Set size of the virtual hard disk >= 15 Gb.
 
-As a result of this steps you will get empty VDOS with name "UbuntuVDOS". Choose it and press button "Settings".
+As a result of these steps you will get empty VDOS with name "UbuntuVDOS". Choose it and press "Settings" button.
 
 1. Choose General -> Advanced. Set parameter "Shared Clipboard" to "Bidirectional".
 2. Choose System.
-    * Motherboard tab. Check that "Base memory" is set to 2048 MB. In "Boot order" untick "Floppy", put "Optical" on the first place and "Hard disk" on the second.
-    * Processor tab. Set number of processors to 2.
-3. Choose Storage. In "Storage tree" choose virtual optical drive (Controller: IDE -> Empty). In "Attributes" section press button with CD and choose Ubuntu .iso file that you previously downloaded.
+    * Motherboard tab. Set "Base memory" to 2048 MB. In "Boot order" untick "Floppy", put "Optical" on the first place and "Hard disk" on the second.
+    * Processor tab. Set number of processors to 2 (or more). _**Be careful**_: if you want to use all cores of your CPU, don't forget to decrease "Execution Cap" to at least to 90%.
+3. Choose Storage. In "Storage tree" choose virtual optical drive (Controller: IDE -> Empty). In "Attributes" section press button with CD and choose Ubuntu *.iso* file that you previously downloaded.
 4. Press OK in "Settings" window.
 
-## Install Ubuntu on virtual machine
+### Install Ubuntu on virtual machine
 
 Now we made all preparations for installation of Ubuntu on virtual machine. Choose "UbuntuVDOS" in VirtualBox and press "Start" button. Virtual machine will start to load and soon you will see Ubuntu installation window.
 
 1. Choose "Install Ubuntu".
-2. Check "Download packages..." and "Install third-party software...".
+2. Check "Download packages during installation" and "Install third-party software...".
 3. Choose "Erase disk and install Ubuntu".
 4. Set time zone, landguage, user name and password.
 5. After succeed installation restart VDOS.
 
-## Install software
+## Setup VDOS: install software
 
-After successful installation of VOS, let's fill it up with usefull software. 
+After successful installation of VDOS, let's fill it up with useful software. 
 
 ### Update packages
 
@@ -86,7 +86,7 @@ sudo apt-get upgrade
 
 ### Install VirtualBox Guest Additions
 
-With VirtualBox Guest Additions VOS will work smoothly. Also this package will enable:
+With VirtualBox Guest Additions VDOS will work smoothly. Also this package will enable:
 - shared clipboard
 - drag-and-drop
 - shared folders
@@ -98,35 +98,43 @@ First of all, let's install additional packages:
 sudo apt-get intall linux-headers-$(uname -r)
 ```
 
-I recommend to reboot your VOS after this command so changes in OS could be applied.
+I recommend to reboot your VDOS after this command so changes in OS could be applied.
 
-After VOS reboot check that virtual CD-drive of your VOS is empty. Then choose in VirtualBox menu: Devices -> Insert Guest Additions CD image. VirtualBox will try to mount its "Guest Additions CD" into VOS CD-drive. After that you will see a small window that will offer you to run installation script. Press "Run" button.
+After VDOS reboot check that virtual CD-drive of your VDOS is empty. Then choose in VirtualBox menu: Devices -> Insert Guest Additions CD image. VirtualBox will try to mount its "Guest Additions CD" into VDOS CD-drive. After that you will see a small window that will offer you to run installation script. Press "Run" button.
 
 It is very likely that installation will go smoothly. If during installation something went wrong, read program output - you will get some hints what you need to do (for example, install missed packages).
 
-After installation eject installation CD from virtual CD-drive and reboot VOS.
+After installation eject installation CD from virtual CD-drive and reboot VDOS.
 
 ### Set up shared folders
 
-One of the advantages of the VirtualBox are shared folders. It means that you can set some of the folders of your host OS to be shared with VOS. You can share folders in read-only mode or give full access to them. This is very useful feature. For example, in host OS you can create folder with your projects and then share it with VOS. You would have only one copy of your projects and will be able to work with them in both OS-s.
+One of the advantages of the VirtualBox is support of shared folders. It means that you can set some of the folders of your host OS to be shared with VDOS. You can share folders in read-only mode or give full access to them. This is very useful feature. For example, in host OS you can create folder with your projects and share it with VDOS. You would have only one copy of your projects and will be able to work with them in both OS-s.
 
-Let's share "Projects" folder with VOS (with the help of [this article][mount_shared_folder]):
+Let's share "Projects" folder with VDOS (with the help of [this article][mount_shared_folder]):
 
-1. Turn off your VOS.
-2. In VirtualBox Manager open Settings of your VOS.
+1. Turn off your VDOS.
+2. In VirtualBox Manager open Settings of your VDOS.
 3. In "Shared folders" section add shared folder "Projects" (don't forget to set "Auto-mount" option).
-4. Start your VOS and open Terminal.
+4. Start your VDOS and open Terminal.
 4. Add your user to group "vboxsf" to see content of the shared folders:
     ``` bash
-        sudo usermod -aG vboxsf user_name
+    sudo usermod -aG vboxsf user_name
     ```
     
-5. Log out from the VOS and log in.
-6. Shared folder will be automatically be mounted to **/media/user_name/sf_Projects** or **/media/sf_Projects**. Check that you can see content of shared folder.
-7. For easy access / convenience, you may create a symbolic link to the mounted shared folder in your home folder:
+5. Log out from the VDOS and log in.
+6. Shared folder will be automatically mounted to **/media/user_name/sf_Projects** or **/media/sf_Projects**. Check that you can see content of shared folder.
+7. For easy access/convenience, you may create a symbolic link to the mounted shared folder in your home folder:
+
     ``` bash
-        sudo ln -s /media/sf_Projects /home/user_name/Projects
+    sudo ln -s /media/sf_Projects /home/user_name/Projects
     ```
+    
+### Create snapshot of VDOS
+
+Before we start to install additional software to VDOS, I would recommend you to create snapshot of your VDOS. If something went wrong during software installation, you will be able to roll back any changes and start again. How to create snapshot:
+
+- Turn off VDOS.
+- In VirtualBox window go to the "Snaphots" tab and press button "Take a snapshot".
     
 ### Install basic packages
     
@@ -172,7 +180,7 @@ If you want to use latest version of Boost, go to [Boost SourceForge page][boost
 
 ### Install PyCharm
 
-I love IDE from JetBrains and I think PyCharm is the best free IDE for Python. You can download it [here][pycharmdownload] (choose Community Edition). How to install:
+I love IDEs from JetBrains and I think PyCharm is the best free IDE for Python. You can download it [here][pycharmdownload] (choose Community Edition). How to install PyCharm:
 
 ``` bash
 cd /path/with/pycharm/archive
@@ -186,7 +194,7 @@ sudo mv ./pycharm /opt
 # Run PyCharm. You will see set up window. Don't forget to choose option "Create Desktop shortcut for all users"
 sudo /opt/pycharm/bin/pycharm.sh
 
-# Add to $PATH variable path to PyCharm */bin* folder:
+# Add path to PyCharm */bin* folder to $PATH variable :
 # PATH="$PATH:/opt/pychram/bin"
 nano ~/.profile
 
@@ -212,7 +220,7 @@ sudo mv ./idea /opt
 # Run Idea. You will see set up window. Don't forget to choose option "Create Desktop shortcut for all users"
 sudo /opt/idea/bin/idea.sh
 
-# Add to $PATH variable path to PyCharm */bin* folder:
+# Add path to Idea */bin* folder to $PATH variable :
 # PATH="$PATH:/opt/idea/bin"
 nano ~/.profile
 
@@ -230,6 +238,15 @@ sudo apt-get install libindicator7 libappindicator1
 cd /path/with/chrome
 sudo dpkg -i google-sudochrome.deb
 ```
+
+## Conclusion
+
+Congratulations! Now you have your own VDOS! First of all, I would recommend you to create new snapshot of VDOS. If you want to transfer VDOS to another computer:
+- Go to the VirtualBox Menu -> File -> Export Appliance and follow instructions.
+- VirtualBox will create *.ova* file with your VDOS.
+- Copy it to target computer.
+- Install VirtualBox on target computer.
+- Go to the VirtualBox Menu -> File -> Import Appliance and follow instructions.
 
 [vb_site]: https://www.virtualbox.org/
 [vb_download]: https://www.virtualbox.org/wiki/Downloads
