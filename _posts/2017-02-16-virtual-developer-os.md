@@ -1,7 +1,12 @@
-# My Dev Machine
+---
+title: Virtual Developer OS
+layout: default
+author:
+  name: Antony Cherepanov
+  url: {{ site.url }}
+---
 
-Every developer has set of software and tools that he uses for work or hobby. This set could 
-contain favorite IDEs, packages, libraries and useful tools. Over time, this list of software grows. At some point the set gets on so large that developer can not hold all of it in his memory. That is how "developer memory dump" appears - text file with list of necessary software.
+Every developer has set of software and tools that he uses for work or hobby. This set could contain favorite IDEs, packages, libraries and useful tools. Over time, this list of software grows. At some point the set gets on so large that developer can not hold all of it in his memory. That is how "developer memory dump" appears - text file with list of necessary software.
 
 Time goes by. Developer gets new work, upgrade his (or her) PC... After several iterations of installation of tons of software on clean OS, developer asks himself - how he can optimize this routine? One of the answers is to use virtual machine. Main idea is simple: you set up virtual machine with OS and all required software only once and then use it on (almost) every computer. I call such virtual machine *Virtual Developer OS (VDOS)*.
 
@@ -73,7 +78,7 @@ Now we made all preparations for installation of Ubuntu on virtual machine. Choo
 
 ## Setup VDOS: install software
 
-After successful installation of VDOS, let's fill it up with useful software. 
+After successful installation of VDOS, let's fill it up with useful software.
 
 ### Update packages
 
@@ -120,7 +125,7 @@ Let's share "Projects" folder with VDOS (with the help of [this article][mount_s
     ``` bash
     sudo usermod -aG vboxsf user_name
     ```
-    
+
 5. Log out from the VDOS and log in.
 6. Shared folder will be automatically mounted to **/media/user_name/sf_Projects** or **/media/sf_Projects**. Check that you can see content of shared folder.
 7. For easy access/convenience, you may create a symbolic link to the mounted shared folder in your home folder:
@@ -128,16 +133,16 @@ Let's share "Projects" folder with VDOS (with the help of [this article][mount_s
     ``` bash
     sudo ln -s /media/sf_Projects /home/user_name/Projects
     ```
-    
+
 ### Create snapshot of VDOS
 
 Before we start to install additional software to VDOS, I would recommend you to create snapshot of your VDOS. If something went wrong during software installation, you will be able to roll back any changes and start again. How to create snapshot:
 
 - Turn off VDOS.
 - In VirtualBox window go to the "Snaphots" tab and press button "Take a snapshot".
-    
+
 ### Install basic packages
-    
+
 ``` bash
 sudo apt-get install mc htop synaptic screen gcc g++ \
 make cmake gdb git subversion valgrind ubuntu-sdk \
@@ -188,7 +193,7 @@ cd /path/with/pycharm/archive
 # Extract archive
 tar -zxvf pycharm-archive.tar.gz
 
-# As a result we will get pychram folder. Let's move it into /opt 
+# As a result we will get pychram folder. Let's move it into /opt
 sudo mv ./pycharm /opt
 
 # Run PyCharm. You will see set up window. Don't forget to choose option "Create Desktop shortcut for all users"
@@ -206,7 +211,7 @@ pycharm.sh
 
 Another IDE from JetBrains. This time for Java. You can download it [here][ideadownload] (choose Community Edition and *.tar.gz* extension).
 
-Installation process of IntelliJ IDEA is the same as the installation of PyCharm: 
+Installation process of IntelliJ IDEA is the same as the installation of PyCharm:
 
 ``` bash
 cd /path/with/idea/archive
@@ -214,7 +219,7 @@ cd /path/with/idea/archive
 # Extract archive
 tar -zxvf idea-archive.tar.gz
 
-# As a result we will get Idea folder. Let's move it into /opt 
+# As a result we will get Idea folder. Let's move it into /opt
 sudo mv ./idea /opt
 
 # Run Idea. You will see set up window. Don't forget to choose option "Create Desktop shortcut for all users"
