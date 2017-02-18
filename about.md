@@ -4,24 +4,23 @@ layout: default
 ---
 
 <p>
-Antony Cherepanov. Human. Developer.
+Antony Cherepanov: human, developer.
 </p>
 
 <p>
 Most of my live I lived in Pervouralsk (Russia). Here I went to the kindergarden 
-and school. In 2007 I went to the University and moved to the Yekaterinburg. 
+and school. In 2007 I went to the Ural Federal University and moved to the Yekaterinburg. 
 In 2014 my girlfriend said to me that enough is enough - 
 it's too cold for her on Ural - so we moved to warmer Moscow.
 </p>
 
 <p>
 I get interested in programming at school. We learned fundamentals of 
-Computer Science (binary arithmetic and so on) and implemented some simple 
-algorithms on BASIC.
+Computer Science  and implemented some simple algorithms on BASIC.
 </p>
 
 <p>
-In the first year at the University I started to learn C. At first it was not 
+On the first year at the University I started to learn C. At first it was not 
 easy: includes, stack, heap, arrays, pointers, memory leaking... But after some 
 practice I got used to "strange rules" of C. Unfortunately, in the following 
 years at the University we concentrated more on radioelectronics and 
@@ -38,26 +37,20 @@ So after six months I quit it and decided to become a programmer.
 </p>
 
 <p>
-I found a new job and started to work as junior developer. It was whole 
+I found a new job and started to work as a junior developer. It was whole 
 new world for me! I spent much time to learn bunch of new stuff: C++, 
-Qt framework, UNIX basics, programming techniques and so on.
+Qt framework, Linux basics, programming techniques and so on.
 </p>
 
 <p>
 Since that I changed several jobs. Worked as Game Developer (it was fun!), 
-frontend/backend developer (unfortunately not too long and still have weak 
-knowledge of web development). I started to learn Python (love it!), Java, 
-Android and became interested in image processing.
+frontend/backend developer (unfortunately not too long). I started to 
+learn Python (love it!), Java, Android and became interested in image processing.
 </p>
 
 <p>
-I still can't say that I became a professional programmer. Every day I try 
-to learn something new: C++ in depth, SQL, TDD, program architecture, system 
+Every day I try to learn something new: C++ in depth, SQL, TDD, program architecture, system 
 administration... It's not always easy, but always fun.
-</p>
-
-<p>
-Well, that's it. Thanks for reading!
 </p>
 
 <p>
