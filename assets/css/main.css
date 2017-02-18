@@ -42,7 +42,6 @@ body {
     width:100px;
     height:100px;
     top: 0px;
-    left:-50px;
 }
 
 .hero-unit {
@@ -67,7 +66,7 @@ body {
 }
 
 .hero-unit h1 a {
-    color:#555;
+    color:#333;
 }
 
 .hero-unit h1 a:hover {
@@ -98,6 +97,10 @@ body {
 
 .hero-unit #tweet .time {
     opacity:0.4;
+}
+
+.hero-unit #site-header-text {
+    padding-left:120px;
 }
 
 .post .section {
