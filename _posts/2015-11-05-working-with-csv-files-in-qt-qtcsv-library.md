@@ -1,6 +1,7 @@
 ---
 title: Working with csv-files in Qt - qtcsv library
 layout: default
+number: 2
 author:
   name: Antony Cherepanov
   url: {{ site.url }}

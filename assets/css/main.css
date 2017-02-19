@@ -249,29 +249,6 @@ ul.listless li {
     margin: 0 0 18px;
 }
 
-#page-archive ol {
-    margin-left:120px;
-}
-
-#page-archive ol li {
-    font-size:40px;
-    color:#ddd;
-    margin-bottom:40px;
-}
-
-#page-archive ol li:hover {
-    color:#ccc;
-}
-
-#page-archive ol li h2 a {
-    display:block;
-}
-
-#page-archive ol li p {
-    font-size:16px;
-    color:#555;
-}
-
 ul.repository-list {
     list-style: none;
     margin: 0;
@@ -413,7 +390,7 @@ div.post h3 {
 
 #page-latest ol li {
     font-size:40px;
-    color:#ddd;
+    color:#005580;
     margin-bottom:40px;
 }
 

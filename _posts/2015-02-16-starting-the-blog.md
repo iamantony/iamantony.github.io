@@ -1,6 +1,7 @@
 ---
 title: Starting the Blog
 layout: default
+number: 1
 author:
   name: Antony Cherepanov
   url: {{ site.url }}

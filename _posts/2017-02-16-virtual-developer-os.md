@@ -1,6 +1,7 @@
 ---
 title: Virtual Developer OS
 layout: default
+number: 3
 author:
   name: Antony Cherepanov
   url: {{ site.url }}
