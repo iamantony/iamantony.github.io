@@ -14,6 +14,8 @@
                     {% case page.url %}
                         {% when '/index.html' %}
                             {% include posts/latest.html %}
+                        {% when '' %}
+                            {% include posts/latest.html %}
                         {% when '/bio.html' %}
                             {% include posts/bio.html %}
                         {% else %}
