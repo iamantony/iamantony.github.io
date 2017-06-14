@@ -1,10 +1,37 @@
-# Jekyll
-exclude: ['nbproject', 'README.md', 'manifest.yml', 'rakefile.rb', 'Gemfile', 'Gemfile.lock', 'update.sh', 'localupdate.sh']
-permalink:   /:title
+# Jekyll settings
 
+# Exclude files/dirs from conversion during site building
+exclude: ['README.md', "Gemfile", "Gemfile.lock", "node_modules", "vendor/bundle/", "vendor/cache/", "vendor/gems/", "vendor/ruby/"]
+#permalink:   /:title
+
+timezone: Europe/Moscow
+
+# Publish posts or collection documents with a future date
 future: false
-markdown: kramdown
+
+# Show draft posts on site
+show_drafts: false
+
+# Cause a build to fail if there is a YAML syntax error in a page's front matter
+strict_front_matter: true
 
 # Site
 iamantony:
     title: iamantony
+
+# Set default values for files (http://jekyllrb.com/docs/configuration/#front-matter-defaults)
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+      type: "pages"
+    values:
+      layout: "default"
+
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+      type: "posts"
+    values:
+      layout: "post"
+      author: "iamantony"

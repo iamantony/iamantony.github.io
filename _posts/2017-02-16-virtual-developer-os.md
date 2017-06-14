@@ -1,10 +1,6 @@
 ---
 title: Virtual Developer OS
-layout: default
 number: 3
-author:
-  name: Antony Cherepanov
-  url: {{ site.url }}
 ---
 
 Every developer has set of software and tools that he uses for work or hobby. This set could contain favorite IDEs, packages, libraries and useful tools. Over time, this list of software grows. At some point the set gets on so large that developer can not hold all of it in his memory. That is how "developer memory dump" appears - text file with list of necessary software.

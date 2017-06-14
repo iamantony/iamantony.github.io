@@ -1,10 +1,6 @@
 ---
 title: Working with csv-files in Qt - qtcsv library
-layout: default
 number: 2
-author:
-  name: Antony Cherepanov
-  url: {{ site.url }}
 ---
 
 About a year ago, I worked on my home-project that has relation to image

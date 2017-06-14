@@ -1,5 +1,4 @@
 source "http://rubygems.org"
-
-gem "jekyll"
-gem "nokogiri"
-gem "rdiscount"
+gem 'github-pages', group: :jekyll_plugins
+gem 'github-linguist'
+gem 'execjs'

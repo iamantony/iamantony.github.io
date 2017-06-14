@@ -1,6 +1,7 @@
 # Jekyll
 _site/
 .sass-cache/
+.jekyll-metadata
 
 #Other
 *.lock

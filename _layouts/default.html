@@ -3,29 +3,31 @@
     <head>
         <title>{{ page.title }}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        {% include assets/css/default.html %}
-        {% include assets/js/default.html %}
+        <!-- {% include assets/css/default.html %}
+        {% include assets/js/default.html %} -->
     </head>
-    <body id="{% include page/id %}">
+    <body>
         <div class="container">
-            {% include header/introduction.html %}
+            <!-- {% include header/introduction.html %} -->
             <div class="row">
                 <div class="span8">
-                    {% case page.url %}
-                        {% when '/index.html' %}
-                            {% include posts/latest.html %}
-                        {% when '' %}
-                            {% include posts/latest.html %}
-                        {% when '/bio.html' %}
-                            {% include posts/bio.html %}
-                        {% else %}
-                            {% include posts/post.html %}
-                    {% endcase %}
+                    <ol>
+                        {% for post in site.posts offset: 0 %}
+                        {% capture reverse_index %}{{ forloop.length | minus:forloop.index | plus:1 }}{% endcapture %}
+                        <li type="1" value="{{ reverse_index }}">
+                            <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+                            <p class="post-info">
+                                {{ post.date | date: "%B %e, %Y" }} by {{ post.author }}
+                            </p>
+                            {{ post.excerpt }}
+                        </li>
+                        {% endfor %}
+                    </ol>
                 </div>
-                <div class="span4 sidebar">
+                <!-- <div class="span4 sidebar">
                     {% include sidebar/about.html %}
                     {% include sidebar/repositories.html %}
-                </div>
+                </div> -->
             </div>
         </div>
     </body>
