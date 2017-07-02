@@ -1,4 +1,15 @@
-[class^="icon-"], [class*=" icon-"] {
+#header {
+    margin-left: 10%;
+    margin-right: 10%;
+    border: 1px solid blue;
+    background-color: blue;
+}
+
+nav a#header-last-elem {
+    float: right;
+}
+
+/*[class^="icon-"], [class*=" icon-"] {
     background-image: none;
 }
 
@@ -409,3 +420,4 @@ div.post h3 {
 .post-info {
     opacity: 0.4;
 }
+*/
