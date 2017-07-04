@@ -1,13 +1,41 @@
-#header {
+/* Color palette: http://www.color-hex.com/color-palette/41407 */
+
+header {
     margin-left: 10%;
     margin-right: 10%;
-    border: 1px solid blue;
-    background-color: blue;
+    height: 3em;
+
+    background-color: rgb(106, 173, 185);
+}
+
+header nav {
+    padding: 0em 1em;
+
+}
+
+header nav a {
+    padding: 0em 0.2em;
+    float: left;
+
+    font-size: 2em;
+    font-family: 'ABeeZee';
+    line-height: 1.5em;
+    color: rgb(25, 70, 90);
+}
+
+header nav a:link {
+    text-decoration: none;
+}
+
+header nav a:hover {
+    background-color: rgb(86, 153, 165);
+    color: rgb(25, 70, 90);
 }
 
 nav a#header-last-elem {
     float: right;
 }
+
 
 /*[class^="icon-"], [class*=" icon-"] {
     background-image: none;
