@@ -9,42 +9,24 @@
 }
 
 /* Header styles */
-header {
-/*    margin-left: 20%;
-    margin-right: 20%;
-    height: 50px;*/
-
+header > nav.navbar {
+    border: none;
     background-color: rgb(106, 173, 185);
 }
 
-header nav a {
-    padding: 0 0.2em;
-    float: left;
-    height: 50px;
+header div.navbar-header {
+    width: 100%;
+}
 
+.nav-justified > li > a {
     font-size: 2em;
-    text-align: center;
-    vertical-align: middle;
     color: rgb(25, 70, 90);
 }
 
-header nav a:link {
-    text-decoration: none;
+.nav-justified > li > a:hover {
+    background-color: rgb(68,148,177);
+    color: rgb(10, 55, 75);
 }
-
-header nav a:hover {
-    background-color: rgb(86, 153, 165);
-    color: rgb(25, 70, 90);
-}
-
-header nav a#header-first-elem {
-    padding-left: 0;
-}
-
-header nav a#header-last-elem {
-    float: right;
-}
-
 
 /*[class^="icon-"], [class*=" icon-"] {
     background-image: none;
