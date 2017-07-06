@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>{{ page.title }}</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        {% include page/includes.html %}
-    </head>
-    <body>
-        <div class="container">
-            {% include page/header.html %}
-            <div class="post">
-                <div class="section section-post-meta post">    
-                    <h2><a href="{{ page.url }}">{{ page.number }}. {{ page.title }}</a></h2>
-                    <p class="meta">
-                        {{ page.date | date: "%B %e, %Y" }}
-                    </p>
-                </div>
-
-                {{ page.content }}
-            </div>
-        </div>
-    </body>
+  <head>
+    <title>{{ page.title }}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    {% include page/includes.html %}
+  </head>
+  <body>
+      <div class="container">
+          {% include page/header.html %}
+          <div class="post">
+              <div class="section section-post-meta post">
+                  <h2><a href="{{ page.url }}">{{ page.number }}. {{ page.title }}</a></h2>
+                  <p class="meta">
+                      {{ page.date | date: "%B %e, %Y" }}
+                  </p>
+              </div>
+              {{ page.content }}
+          </div>
+      </div>
+  </body>
 </html>
