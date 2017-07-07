@@ -10,11 +10,11 @@
       <div class="row">
         {% include page/header.html %}
         <div class="row">
-          <ol>
+          <ol class="posts-list">
             {% for post in site.posts offset: 0 %}
             {% capture reverse_index %}{{ forloop.length | minus:forloop.index | plus:1 }}{% endcapture %}
-            <li type="1" value="{{ reverse_index }}">
-              <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+            <li type="1">
+              <h2><a href="{{ post.url }}">{{ reverse_index }}. {{ post.title }}</a></h2>
               <p class="post-info">{{ post.date | date: "%B %e, %Y" }}</p>
               {{ post.excerpt }}
             </li>
