@@ -1,5 +1,10 @@
 /* Color palette: http://www.color-hex.com/color-palette/41407 */
 
+/* Setup basic font size */
+html {
+    font-size: 16px;
+}
+
 /* === Header styles === */
 header > nav.navbar {
     border: none;
@@ -13,7 +18,7 @@ header div.navbar-header {
 }
 
 .nav-justified > li > a {
-    font-size: 2em;
+    font-size: 2rem;
     color: rgb(25, 70, 90);
 }
 
