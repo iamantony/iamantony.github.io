@@ -3,6 +3,8 @@
 /* === Header styles === */
 header > nav.navbar {
     border: none;
+    border-radius: 0 0 4px 4px;
+
     background-color: rgb(106, 173, 185);
 }
 
@@ -19,8 +21,6 @@ header div.navbar-header {
     background-color: rgb(68,148,177);
     color: rgb(10, 55, 75);
 }
-
-/* TODO: top-border style */
 
 /* === Styles for content section: list of posts === */
 div.row ol.posts-list {
