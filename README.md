@@ -1,4 +1,3 @@
 # iamantony.github.io
 
-Sources of my blog.  
-Based on https://github.com/rbirnie/uberobert.com.
+Sources of my blog.
