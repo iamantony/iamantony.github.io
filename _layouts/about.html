@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>{{ page.title }}</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        {% include page/includes.html %}
-    </head>
-    <body>
-        <div class="container">
-            {% include page/header.html %}
-            <div class="post about">
-                {{ page.content }}
-            </div>
+  <head>
+    <title>{{ page.title }}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    {% include page/includes.html %}
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        {% include page/header.html %}
+        <div class="row post about">
+          <div class="section section-post-meta">
+            <h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+          </div>
+          <p>Hi! My name is Antony Cherepanov. Welcome to my blog!</p>
+          <p>I'm a Developer (C++, Qt, Python, Android). Here you'll find info about my projects, some tips-and-tricks and just my notes.</p>
+          <p>You can contact me via e-mail: <span>antony.cherepanov@gmail.com</span></p>
+          <p>I'm on the Internet:</p>
+          <ul class="fa-ul">
+            {% for link in site.data.people.iamantony %}
+            <li><i class="fa-li fa {{ link.pic_class }}" aria-hidden="true"></i><a target="_blank" href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
         </div>
-    </body>
+      </div>
+    </div>
+  </body>
 </html>
