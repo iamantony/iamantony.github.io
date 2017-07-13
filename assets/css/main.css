@@ -1,12 +1,4 @@
- Color palette: http://www.color-hex.com/color-palette/41407 */
-
-/* Disable browser predefined styles*/
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-family: Arial, Helvetica, sans-serif;
-}
+/* Color palette: http://www.color-hex.com/color-palette/41407 */
 
 /* === Header styles === */
 header > nav.navbar {
