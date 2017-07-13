@@ -1,6 +1,13 @@
 iamantony:
-    name: Antony Cherepanov
-    email: antony.cherepanov@gmail.com
-    github: https://github.com/iamantony
-    stackoverflow: https://stackoverflow.com/users/1536843/iamantony
-    twitter: https://twitter.com/heyiamantony
+  - title: "LinkedIn"
+    url: "https://www.linkedin.com/in/antony-cherepanov-66476194"
+    pic_class: "fa-linkedin"
+  - title: "GitHub"
+    url: "https://github.com/iamantony"
+    pic_class: "fa-github"
+  - title: "Stack Overflow"
+    url: "https://stackoverflow.com/users/1536843/iamantony"
+    pic_class: "fa-stack-overflow"
+  - title: "Twitter"
+    url: "https://twitter.com/heyiamantony"
+    pic_class: "fa-twitter"
