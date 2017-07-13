@@ -1,8 +1,7 @@
 # Jekyll settings
 
 # Exclude files/dirs from conversion during site building
-exclude: ['README.md', "Gemfile", "Gemfile.lock", "node_modules", "vendor/bundle/", "vendor/cache/", "vendor/gems/", "vendor/ruby/"]
-#permalink:   /:title
+exclude: ['README.md', "Gemfile", "Gemfile.lock", "node_modules"]
 
 timezone: Europe/Moscow
 
