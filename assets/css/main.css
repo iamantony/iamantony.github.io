@@ -38,8 +38,10 @@ div.section-post-meta h2 > a {
     color: rgb(45, 100, 120);
 }
 
+div.row ol.posts-list li,
 div.row ol.posts-list li p,
-div.post p {
+div.post p,
+div.post li {
     text-align: justify;
     font-size: 1rem;
 }
@@ -63,4 +65,8 @@ div.row ol.posts-list li {
     list-style: none;
 }
 
-/* === Styles for content section: post === */
+/* === Styles for content section: about === */
+div.about p > span {
+    font-style: italic;
+    color: rgb(51, 116, 140);
+}
