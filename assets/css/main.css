@@ -27,24 +27,40 @@ header div.navbar-header {
     color: rgb(10, 55, 75);
 }
 
-/* === Styles for content section: list of posts === */
-div.row ol.posts-list {
-    padding: 0 20px;
-}
-
-div.row ol.posts-list li {
-    list-style: none;
-}
-
-div.row ol.posts-list li p {
-    text-align: justify;
-}
-
-/* === Styles for content section: post === */
+/* === Common styles for list of posts and post === */
+div.row ol.posts-list,
 div.post {
     padding: 0 20px;
 }
 
+div.row ol.posts-list h2 > a,
+div.section-post-meta h2 > a {
+    color: rgb(45, 100, 120);
+}
+
+div.row ol.posts-list li p,
 div.post p {
     text-align: justify;
+    font-size: 1rem;
 }
+
+div.row ol.posts-list li p a,
+div.post p a,
+div.post ol a,
+div.post ul a {
+    color: rgb(51, 116, 140);
+}
+
+div.row ol.posts-list li p.post-info,
+div.section-post-meta p.meta {
+    margin-left: 2.2rem;
+    font-size: 0.9rem;
+    color: rgb(74, 87, 91);
+}
+
+/* === Styles for content section: list of posts === */
+div.row ol.posts-list li {
+    list-style: none;
+}
+
+/* === Styles for content section: post === */
