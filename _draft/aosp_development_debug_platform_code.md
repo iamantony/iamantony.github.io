@@ -15,7 +15,7 @@ I will base my article on these blog posts:
 - http://ronubo.blogspot.ru/2016/01/debugging-aosp-platform-code-with.html
 - https://shuhaowu.com/blog/setting_up_intellij_with_aosp_development.html
 
-## Instructions
+## Prepare environment
 
 These instructions were written using the following software
 
@@ -106,15 +106,31 @@ IDE will start indexing files in aosp directory. It could take some time, please
 
 6. Open Project Settings.
 
-In Android Studio go to menu `File -> Project Structure ...`.
+In Android Studio go to menu `File -> Project Structure ...`. 
 
-In SDK tab:
-Add new SDK with no libraries (add screenshot). Give it a useful name. Remove all entries in Classpath tab.
+Choose `SDKs` entry on the left side of the opened window. Add new JDK entry.
+Set up home path to JDK (in my case it is folder `/usr/lib/jvm/java-1.8.0-openjdk-arm64`).
+Give some meaningful name to new SDK (for example `1.8_debug`).
+Remove all entries in tab `Classpath`.
 
-In Project tab:
-Set which folders will be "Source folders" and which should be excluded. Example:
-Source folders: frameworks, external, system, ...
-Excluded folders: build, developers, out, ...
+[Insert as-project-sdk.png]
+
+Next choose `Project` section. Setup `Project SDK` to newly created SDK.
+
+[Insert as-project-project.png]
+
+Finally choose `Modules` section. Here you will see name of opened project - aosp?? - and
+its sources tree. By default most of the files in aosp folder would be imported to
+our project. But if we are going to debug only platform code, we don't need all of them, 
+but only some folders. Fortunately we can mark such folders as `Sources` and all others
+as `Excluded`.
+
+`Sources` folders: frameworks, external, google, system, libcore, out/target/common/R
+
+[Insert as-project-modules.png]
+
+
+## Debug AOSP platform
 
 6. Set up brakepoints in some sources (PackageManagerService.java for example)
 7. Load images to emulator or phone. Start device
