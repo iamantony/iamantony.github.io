@@ -1,23 +1,21 @@
-# AOSP Development Part 3. How to debug platform code
+---
+title: AOSP Development: how to debug platform code
+number: X
+---
 
-## Links to all parts
+## Intro
 
-In previous parts:
-1. Set up (download aosp, build images)
-2. Android Studio (installation, usage, emulator, simple app)
-3. Debuggin platform code (you are reading it)
+This article is intended for developers, who decided to explore Android world
+in more detail. It is assumed that you have already downloaded AOSP sources
+and tried to build images for emulator or Nexus-device. If you want to know
+how Android works inside, debugging of platform code will help you a lot.
 
-## Introduction
-
-Next step is ...
-
-I will base my article on these blog posts:
-- http://ronubo.blogspot.ru/2016/01/debugging-aosp-platform-code-with.html
-- https://shuhaowu.com/blog/setting_up_intellij_with_aosp_development.html
+But first of all I want to say many thanks to [ronubo][ronubo-site] and
+[shuhaowu][shuhaowu-site]!
 
 ## Prepare environment
 
-These instructions were written using the following software
+These instructions were written on machine with following software:
 
 - Ubuntu 15.10 x64
 - AOSP: 6.0 revision r67
@@ -57,7 +55,7 @@ idegen.sh creates special .ipr and .iml files that contain information
 about aosp-based project: list of source folders, which folders should be excluded
 from project, path to libraries and other settings. `".ipr"` file could be interpreted by
 Android Studio as project files. I would also recommend you to read
-development/tools/README file.
+`development/tools/README` file.
 
 ``` bash
 development/tools/idegen.sh
@@ -141,6 +139,8 @@ as `Excluded`.
 12. Start debugging in Android Studio. You should see message that debugger connected to port.
 13. Copy some apk on device and try to install it.
 
+[ronubo-site]: http://ronubo.blogspot.ru/2016/01/debugging-aosp-platform-code-with.html
+[shuhaowu-site]: https://shuhaowu.com/blog/setting_up_intellij_with_aosp_development.html
 [google-as-config]: https://developer.android.com/studio/intro/studio-config.html
 [intellij-as-config]: https://intellij-support.jetbrains.com/hc/en-us/articles/206544869-Configuring-JVM-options-and-platform-properties
 [jvm-opts-explained]: https://github.com/FoxxMD/intellij-jvm-options-explained
